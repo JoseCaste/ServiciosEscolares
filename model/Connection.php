@@ -63,7 +63,7 @@ class Connect_to_database
 {
     public static function conexion()
     {
-        $conexion = new mysqli("localhost", "php", "password", "asistent", "3306");
+        $conexion = new mysqli("localhost", "php", "password", "control_escolar", "3306");
         $conexion->query("SET NAMES 'utf8'");
         return $conexion;
     }
