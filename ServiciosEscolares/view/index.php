@@ -14,7 +14,7 @@ session_start();
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
-    <link href="../css/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/styles.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -28,7 +28,7 @@ session_start();
                         <img class="profile-img" src="./inicio_sesion.png" alt="">
                     </div>
 
-                    <form class="form-signin" method="POST" action="../controller/index_controller.php">
+                    <form class="form-signin" method="POST" action="../../ServiciosEscolares/controller/index_controller.php">
                         <input id="username" name="username" type="text" class="form-control" placeholder="Usuario" required autofocus>
                         <input id="password" name="password" type="password" class="form-control" placeholder="Contraseña" value="12345" required>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">

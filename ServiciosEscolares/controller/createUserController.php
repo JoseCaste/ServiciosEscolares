@@ -8,5 +8,5 @@ $mail=$_REQUEST['txtEmail'];
 $tarjet_number=$_REQUEST['txtNumTarjet'];
 
 if($conn->addEmployee($name,$lastname,$mail,$tarjet_number)){
-    header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/view/controlPanel.php");
+    header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/ServiciosEscolares/view/controlPanel.php");
 }
