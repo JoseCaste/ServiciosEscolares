@@ -4,7 +4,7 @@
     $controller = new ControlPanelController();
 
     if($_SESSION['username']==null && $_SESSION['password']==null){
-        header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/index.php");
+        header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/view/index.php");
     }
     ?>
 <!doctype html>

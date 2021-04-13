@@ -17,6 +17,6 @@ function validate_admin($username, $password)
         header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/view/controlPanel.php");
     } else {
         $_SESSION['invalid']="Credenciales no validas";
-        header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/index.php");
+        header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/view/index.php");
     }
 }
