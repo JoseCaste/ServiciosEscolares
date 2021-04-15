@@ -58,6 +58,16 @@ class Connection
         }
 
     }
+    public function verifyTarjetNumber($tarjet_number){
+
+
+        $query= mysqli_query($this->db,"SELECT * FROM employee where tarjet_number like '$tarjet_number'",MYSQLI_STORE_RESULT);
+        if(mysqli_num_rows($query)>0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
 class Connect_to_database
 {

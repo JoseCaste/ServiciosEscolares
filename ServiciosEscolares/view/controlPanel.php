@@ -1,12 +1,12 @@
 <?php
-    session_start();
-    require_once("../controller/controlPanelController.php");
-    $controller = new ControlPanelController();
+session_start();
+require_once("../controller/controlPanelController.php");
+$controller = new ControlPanelController();
 
-    if($_SESSION['username']==null && $_SESSION['password']==null){
-        header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/ServiciosEscolares/view/index.php");
-    }
-    ?>
+if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
+    header("Location: http://localhost:" . $_SERVER['SERVER_PORT'] . "/ServiciosEscolares/ServiciosEscolares/view/index.php");
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../../assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-    <link href="../../css/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/styles.css" rel="stylesheet" type="text/css" />
     <title>Panel de administración</title>
 
 </head>
@@ -32,7 +32,7 @@
 <body>
 
 
-    
+
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -173,8 +173,7 @@
 
                                                             <!--
                                      Modal window
-                                -->
-
+-->
                                                             <!-- Trigger the modal with a button -->
                                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
 
@@ -186,33 +185,63 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                           
+
                                                                         </div>
                                                                         <div class="modal-body">
 
                                                                             <form method="POST" action="../controller/createUserController.php">
                                                                                 <div class="form-group">
                                                                                     <label for="txtname">Nombre</label>
-                                                                                    <input type="text" class="form-control" id="txtName" name="txtName">
+                                                                                    <input type="text" class="form-control" id="txtName" name="txtName" value=<?php if (isset($_SESSION['name'])) echo $_SESSION['name'] ?>>
+                                                                                    <?php
+                                                                                    if (isset($_SESSION['nameInvalid'])) {
+                                                                                        $invalid = $_SESSION['nameInvalid'];
+                                                                                        echo "<span href=# class='text-center new-account' style='color:red'>$invalid</span>";
+                                                                                    }
+
+                                                                                    ?>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtLastName">Apellido</label>
-                                                                                    <input type="text" class="form-control" id="txtLastName" name="txtLastName">
+                                                                                    <input type="text" class="form-control" id="txtLastName" name="txtLastName" value=<?php if (isset($_SESSION['lastname'])) echo $_SESSION['lastname'] ?>>
+                                                                                    <?php
+                                                                                    if (isset($_SESSION['lastnameInvalid'])) {
+                                                                                        $invalid = $_SESSION['lastnameInvalid'];
+                                                                                        echo "<span href=# class='text-center new-account' style='color:red'>$invalid</span>";
+                                                                                    }
+
+                                                                                    ?>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtEmail">Email</label>
-                                                                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+                                                                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail" value=<?php if (isset($_SESSION['email'])) echo $_SESSION['email'] ?>>
+                                                                                    <?php
+                                                                                    if (isset($_SESSION['emailInvalid'])) {
+                                                                                        $invalid = $_SESSION['emailInvalid'];
+                                                                                        echo "<span href=# class='text-center new-account' style='color:red'>$invalid</span>";
+                                                                                    }
+
+                                                                                    ?>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtNumTarjet">Número de tarjeta</label>
-                                                                                    <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet">
+                                                                                    <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet" value=<?php if (isset($_SESSION['tarjet_number'])) echo $_SESSION['tarjet_number'] ?>>
+                                                                                    <?php
+                                                                                    if (isset($_SESSION['tarjetNumberInvalid'])) {
+                                                                                        $invalid = $_SESSION['tarjetNumberInvalid'];
+                                                                                        echo "<span href=# class='text-center new-account' style='color:red'>$invalid</span>";
+                                                                                    }
+
+                                                                                    ?>
+                                                                                    
                                                                                 </div>
-                                                                                
+
+
                                                                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                                                             </form>
 
                                                                         </div>
-                                                                        
+
                                                                     </div>
 
                                                                 </div>
@@ -231,12 +260,11 @@
                             </div>
                             <!-- ============================================================== -->
                             <!-- end recent orders  -->
-
-
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
@@ -268,6 +296,7 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <!-- slimscroll js -->
@@ -286,6 +315,16 @@
     <script src="../../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="../../assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
+
+    <?php
+    if (isset($_SESSION['userInvalid'])) {
+        echo "<script language='javascript'>
+        $(function() {
+            $('#myModal').modal('show');
+        });
+        </script>";
+    }
+    ?>
 </body>
 
 </html>
