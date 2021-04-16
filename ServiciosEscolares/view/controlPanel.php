@@ -189,51 +189,28 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                                         </div>
                                                                         <div class="modal-body">
 
-                                                                            <form method="POST" action="../controller/createUserController.php">
+                                                                            <form method="POST" id="userForm">
                                                                                 <div class="form-group">
                                                                                     <label for="txtname">Nombre</label>
-                                                                                    <input type="text" class="form-control" id="txtName" name="txtName" value=<?php if (isset($_SESSION['name'])) echo $_SESSION['name'] ?>>
-                                                                                    <?php
-                                                                                    if (isset($_SESSION['nameInvalid'])) {
-                                                                                        $invalid = $_SESSION['nameInvalid'];
-                                                                                        echo "<span href=# class='text-center new-account' style='color:red'>$invalid</span>";
-                                                                                    }
+                                                                                    <input type="text" class="form-control" id="txtName" name="txtName">
 
-                                                                                    ?>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtLastName">Apellido</label>
-                                                                                    <input type="text" class="form-control" id="txtLastName" name="txtLastName" value=<?php if (isset($_SESSION['lastname'])) echo $_SESSION['lastname'] ?>>
-                                                                                    <?php
-                                                                                    if (isset($_SESSION['lastnameInvalid'])) {
-                                                                                        $invalid = $_SESSION['lastnameInvalid'];
-                                                                                        echo "<span href=# class='text-center new-account' style='color:red'>$invalid</span>";
-                                                                                    }
+                                                                                    <input type="text" class="form-control" id="txtLastName" name="txtLastName">
 
-                                                                                    ?>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtEmail">Email</label>
-                                                                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail" value=<?php if (isset($_SESSION['email'])) echo $_SESSION['email'] ?>>
-                                                                                    <?php
-                                                                                    if (isset($_SESSION['emailInvalid'])) {
-                                                                                        $invalid = $_SESSION['emailInvalid'];
-                                                                                        echo "<span href=# class='text-center new-account' style='color:red'>$invalid</span>";
-                                                                                    }
+                                                                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail">
 
-                                                                                    ?>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtNumTarjet">Número de tarjeta</label>
-                                                                                    <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet" value=<?php if (isset($_SESSION['tarjet_number'])) echo $_SESSION['tarjet_number'] ?>>
-                                                                                    <?php
-                                                                                    if (isset($_SESSION['tarjetNumberInvalid'])) {
-                                                                                        $invalid = $_SESSION['tarjetNumberInvalid'];
-                                                                                        echo "<span href=# class='text-center new-account' style='color:red'>$invalid</span>";
-                                                                                    }
-
-                                                                                    ?>
-                                                                                    
+                                                                                    <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <span href='#' id="error_message" class='text-center new-account' style='color:red'></span>
                                                                                 </div>
 
 
@@ -315,16 +292,41 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <script src="../../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="../../assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#userForm').submit(function(e) {
+                e.preventDefault();
+                const form = new FormData(e.target);
+                const txtName = form.get("txtName");
+                const txtLastName = form.get("txtLastName");
+                const txtEmail = form.get("txtEmail");
+                const txtNumTarjet = form.get("txtNumTarjet");
 
-    <?php
-    if (isset($_SESSION['userInvalid'])) {
-        echo "<script language='javascript'>
-        $(function() {
-            $('#myModal').modal('show');
+
+                const json = {
+                    'txtName': txtName,
+                    'txtLastName': txtLastName,
+                    'txtEmail': txtEmail,
+                    'txtNumTarjet': txtNumTarjet
+                };
+                const _json = JSON.stringify(json);
+                $.ajax({
+                     contentType: "application/json",
+                     dataType:"json",
+                     type: "POST",
+                     url: "../controller/createUserController.php",
+                     data: _json,
+                     success: function(response){
+                        window.location.reload();
+                     },
+                     error: function(error){
+                         $("#error_message").text(error.responseJSON.message);
+                     }
+                 });
+            });
         });
-        </script>";
-    }
-    ?>
+    </script>
 </body>
 
 </html>

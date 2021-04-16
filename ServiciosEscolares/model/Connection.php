@@ -9,9 +9,7 @@ class Connection
         $db = Connect_to_database::conexion();
         $this->db = $db;
         if ($db == null) {
-            echo 'no conectada </br>';
         } else {
-            echo 'conectado </br>';
         }
     }
     public function getdb()

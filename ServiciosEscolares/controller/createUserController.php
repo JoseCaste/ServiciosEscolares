@@ -2,47 +2,58 @@
 session_start();
 require_once("../model/Connection.php");
 $conn = new Connection();
+$json = file_get_contents("php://input");
 
-$name = $_REQUEST['txtName'];
-$lastname = $_REQUEST['txtLastName'];
-$mail = $_REQUEST['txtEmail'];
-$tarjet_number = $_REQUEST['txtNumTarjet'];
+$jsonObject = json_decode($json);
 
-/**save data if an error exists */
-$_SESSION['name'] = $name;
-$_SESSION['lastname'] = $lastname;
-$_SESSION['email'] = $mail;
-$_SESSION['tarjet_number'] = $tarjet_number;
+$name = $jsonObject->txtName;
+
+$lastname =  $jsonObject->txtLastName;
+$mail =  $jsonObject->txtEmail;
+$tarjet_number =  $jsonObject->txtNumTarjet;
 
 $regular_expresion = "/^[A-Za-z\\ \']+$/";
-if($conn->verifyTarjetNumber($tarjet_number)){
-    unset($_SESSION["tarjetNumberInvalid"]); //if is correct, delete error to controlPanel.php
+if ($conn->verifyTarjetNumber($tarjet_number)) {
+
     if (preg_match($regular_expresion, $name)) {
-        unset($_SESSION["nameInvalid"]); 
-        
         if (preg_match($regular_expresion, $lastname)) {
-            unset($_SESSION["lastnameInvalid"]);
             if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                unset($_SESSION["emailInvalid"]);
                 if ($conn->addEmployee($name, $lastname, $mail, $tarjet_number)) {
-                    unset($_SESSION['userInvalid']);
+                    
+                    $return= array(
+                        'status'=>200,
+                        "message"=> "Empleado guardado"
+                    );
+                    http_response_code(200);
+                    
                 }
             } else {
-                $_SESSION['userInvalid']="userNotValid";
-                $_SESSION['emailInvalid'] = "El email no es válido";
+                $return= array(
+                    'status'=>400,
+                    "message"=> "El email no es válido"
+                );
+                http_response_code(400);
             }
         } else {
-            $_SESSION['userInvalid']="userNotValid";
-            $_SESSION['lastnameInvalid'] = "El apellido no es válido";
+            $return= array(
+                'status'=>400,
+                "message"=> "El apellido no es válido"
+            );
+            http_response_code(400);
         }
     } else {
-        $_SESSION['userInvalid']="userNotValid";
-        $_SESSION['nameInvalid'] = "El nombre no es válido";
+        $return= array(
+            'status'=>400,
+            "message"=> "El nombre no es válido"
+        );
+        http_response_code(400);
     }
-}else{
-    $_SESSION['userInvalid']="userNotValid";
-    $_SESSION['tarjetNumberInvalid']="El número de tarjeta ya existe";
+} else {
+    $return= array(
+        'status'=>400,
+        "message"=> "El número de tarjeta ya existe"
+    );
+    http_response_code(400);
 }
+print_r(json_encode($return));
 
-
-header("Location: http://localhost:" . $_SERVER['SERVER_PORT'] . "/ServiciosEscolares/ServiciosEscolares/view/controlPanel.php");
