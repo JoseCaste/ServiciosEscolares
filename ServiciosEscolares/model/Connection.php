@@ -9,9 +9,7 @@ class Connection
         $db = Connect_to_database::conexion();
         $this->db = $db;
         if ($db == null) {
-            echo 'no conectada </br>';
         } else {
-            echo 'conectado </br>';
         }
     }
     public function getdb()
@@ -57,6 +55,16 @@ class Connection
             return false;
         }
 
+    }
+    public function verifyTarjetNumber($tarjet_number){
+
+
+        $query= mysqli_query($this->db,"SELECT * FROM employee where tarjet_number like '$tarjet_number'",MYSQLI_STORE_RESULT);
+        if(mysqli_num_rows($query)>0){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
 class Connect_to_database

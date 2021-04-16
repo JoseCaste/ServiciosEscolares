@@ -1,12 +1,12 @@
 <?php
-    session_start();
-    require_once("../controller/controlPanelController.php");
-    $controller = new ControlPanelController();
+session_start();
+require_once("../controller/controlPanelController.php");
+$controller = new ControlPanelController();
 
-    if($_SESSION['username']==null && $_SESSION['password']==null){
-        header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/ServiciosEscolares/view/index.php");
-    }
-    ?>
+if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
+    header("Location: http://localhost:" . $_SERVER['SERVER_PORT'] . "/ServiciosEscolares/ServiciosEscolares/view/index.php");
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../../assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-    <link href="../../css/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/styles.css" rel="stylesheet" type="text/css" />
     <title>Panel de administración</title>
 
 </head>
@@ -32,7 +32,7 @@
 <body>
 
 
-    
+
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -173,8 +173,7 @@
 
                                                             <!--
                                      Modal window
-                                -->
-
+-->
                                                             <!-- Trigger the modal with a button -->
                                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
 
@@ -186,33 +185,40 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                           
+
                                                                         </div>
                                                                         <div class="modal-body">
 
-                                                                            <form method="POST" action="../controller/createUserController.php">
+                                                                            <form method="POST" id="userForm">
                                                                                 <div class="form-group">
                                                                                     <label for="txtname">Nombre</label>
                                                                                     <input type="text" class="form-control" id="txtName" name="txtName">
+
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtLastName">Apellido</label>
                                                                                     <input type="text" class="form-control" id="txtLastName" name="txtLastName">
+
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtEmail">Email</label>
                                                                                     <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="txtNumTarjet">Número de tarjeta</label>
                                                                                     <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet">
                                                                                 </div>
-                                                                                
+                                                                                <div class="form-group">
+                                                                                    <span href='#' id="error_message" class='text-center new-account' style='color:red'></span>
+                                                                                </div>
+
+
                                                                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                                                             </form>
 
                                                                         </div>
-                                                                        
+
                                                                     </div>
 
                                                                 </div>
@@ -231,12 +237,11 @@
                             </div>
                             <!-- ============================================================== -->
                             <!-- end recent orders  -->
-
-
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
@@ -268,6 +273,7 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <!-- slimscroll js -->
@@ -286,6 +292,41 @@
     <script src="../../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="../../assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#userForm').submit(function(e) {
+                e.preventDefault();
+                const form = new FormData(e.target);
+                const txtName = form.get("txtName");
+                const txtLastName = form.get("txtLastName");
+                const txtEmail = form.get("txtEmail");
+                const txtNumTarjet = form.get("txtNumTarjet");
+
+
+                const json = {
+                    'txtName': txtName,
+                    'txtLastName': txtLastName,
+                    'txtEmail': txtEmail,
+                    'txtNumTarjet': txtNumTarjet
+                };
+                const _json = JSON.stringify(json);
+                $.ajax({
+                     contentType: "application/json",
+                     dataType:"json",
+                     type: "POST",
+                     url: "../controller/createUserController.php",
+                     data: _json,
+                     success: function(response){
+                        window.location.reload();
+                     },
+                     error: function(error){
+                         $("#error_message").text(error.responseJSON.message);
+                     }
+                 });
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -20,8 +20,7 @@ CREATE USER 'php'@'localhost' IDENTIFIED 	WITH mysql_native_password BY 'passwor
 GRANT ALL PRIVILEGES ON *.* TO 'php'@'localhost';
 
 #step 4
-insert into user_administrator (username,password,name,lastname) values('jj','jose','12345','castellanos');
-
+insert into user_administrator (username,password,name,lastname) values('jj',md5('12345'),'jose','castellanos');
 #step 5
 insert into employee(name, lastname, mail, tarjet_number)values('Olegario','castellanos','abc@gmail.com','00002'),
 ('Gary','castellanos','abc@gmail.com','00003'),
@@ -29,3 +28,10 @@ insert into employee(name, lastname, mail, tarjet_number)values('Olegario','cast
 ('Juan','castellanos','abc@gmail.com','00005'),
 ('UNISTMO','IXTEPEC','abc@gmail.com','00006');
 
+select * from employee where tarjet_number like '00002';
+
+select MD5(password) from user_administrator;
+
+
+select *,md5('12345') from user_administrator;
+select * from user_administrator;

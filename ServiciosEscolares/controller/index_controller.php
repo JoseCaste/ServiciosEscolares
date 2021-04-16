@@ -4,8 +4,9 @@ require_once("../model/Connection.php");
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 
+
 if ($username != null && $password != null) {
-    validate_admin($username, $password);
+    validate_admin($username, md5($password));
 }
 
 function validate_admin($username, $password)
