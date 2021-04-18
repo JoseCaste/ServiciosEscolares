@@ -92,7 +92,6 @@
                                 url: "../controller/employee_checkController.php",
                                 data: JSON.stringify(json),
                                 success: function(response) {
-                                    console.log("---->" ,response);
                                     $("#message").css("color","blue");
                                     $("#message").text(response.message);
 
