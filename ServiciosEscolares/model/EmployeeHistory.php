@@ -1,41 +1,41 @@
 <?php
 class EmployeeHistory extends Employee
 {
-    private $in_job;
-    private $out_eat;
-    private $out_job;
-
+    private $inJob;
+    private $outEat;
+    private $outJob;
+    private $date;
 
     public function __construct()
     {
     }
 
-    public function getIn_job()
+    public function getInJob()
     {
-        return $this->in_job;
+        return $this->inJob;
     }
-    public function setIn_job($in_job)
+    public function setInJob($InJob)
     {
-        $this->in_job = $in_job;
-    }
-
-    public function getOut_eat()
-    {
-        return $this->out_eat;
+        $this->InJob = $InJob;
     }
 
-    public function setOut_eat($out_eat)
+    public function getOutEat()
     {
-        return $this->out_eat = $out_eat;
-    }
-    public function getOut_job()
-    {
-        return $this->out_job;
+        return $this->outEat;
     }
 
-    public function setOut_job($out_job)
+    public function setOutEat($out_eat)
     {
-        return $this->out_job = $out_job;
+        return $this->OutEat = $out_eat;
+    }
+    public function getOutJob()
+    {
+        return $this->outJob;
+    }
+
+    public function setOutJob($out_job)
+    {
+        return $this->OutJob = $out_job;
     }
 
     public function getName()
@@ -73,5 +73,14 @@ class EmployeeHistory extends Employee
     public function setTarjetNumber($tarjet_numbel)
     {
         $this->tarjet_number = $tarjet_numbel;
+    }
+
+    public function setDate($date)
+    {
+        $this->Date=$date;
+    }
+    public function getDate()
+    {
+        return $this->date;
     }
 }

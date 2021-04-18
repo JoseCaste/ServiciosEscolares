@@ -11,7 +11,7 @@ $tarjet_number = json_decode($json);
 $in= '13:59:59';
 //$in= '13:00:00'; //test
 $out_eat='15:00:00';
-$out_to_job='21:30:00';
+$out_to_job='19:00:00';
 
 $conn= new Connection();
 

@@ -89,6 +89,8 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                             <div id="submenu-1" class="collapse submenu" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
+                                    <a id="employee" class="nav-link" href="#">Empleados</a>
+                                    </li>
                                     <li class="nav-item">
                                         <a id="history" class="nav-link" href="#">Historial</a>
                                     </li>
@@ -263,104 +265,23 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                         <!-- ============================================================== -->
                         <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" style="width: 100%;">
                             <div class="card">
-                                <h5 class="card-header">Historial de los empleados</h5>
+                                <h5 class="card-header">Historial de empleado</h5>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead class="bg-light">
                                                 <tr class="border-0">
-                                                    <th class="border-0">Número de tarjeta</th>
+                                                    <th class="border-0">Tarjeta</th>
                                                     <th class="border-0">Nombre</th>
-                                                    <th class="border-0">Apellido</th>
-                                                    <th class="border-0">Hora de entrada</th>
-                                                    <th class="border-0">Hora de comida</th>
-                                                    <th class="border-0">Hora de salida</th>
+                                                    <th class="border-0">Correo</th>
+                                                    <th class="border-0">Entrada</th>
+                                                    <th class="border-0">Comida</th>
+                                                    <th class="border-0">Salida</th>
+                                                    <th class="border-0">Fecha</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <?php
-                                                for ($i = 0; $i < count($controller->employee_array); $i++) {
-                                                    echo "<tr>"
-                                                        .
-                                                        "
-                                                                <td>" . $controller->employee_array[$i]->getId() . "</td>"
-                                                        .
-                                                        "
-                                                                <td>" . $controller->employee_array[$i]->getName() . "</td>"
-                                                        .
-                                                        "
-                                                                <td>" . $controller->employee_array[$i]->getLastName() . "</td>"
-                                                        .
-                                                        "
-                                                                <td>" . $controller->employee_array[$i]->getMail() . "</td>"
-                                                        .
-                                                        "
-                                                                <td>" . $controller->employee_array[$i]->getTarjetNumber() . "</td>"
-                                                        .
-                                                        "</tr>";
-                                                }
-                                                ?>
-                                                <tr>
-                                                    <td colspan="9">
-
-                                                        <!--
-                                     Modal window
--->
-                                                        <!-- Trigger the modal with a button -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
-
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="myModal" role="dialog">
-                                                            <div class="modal-dialog">
-
-                                                                <!-- Modal content-->
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                                                                    </div>
-                                                                    <div class="modal-body">
-
-                                                                        <form method="POST" id="userForm">
-                                                                            <div class="form-group">
-                                                                                <label for="txtname">Nombre</label>
-                                                                                <input type="text" class="form-control" id="txtName" name="txtName">
-
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="txtLastName">Apellido</label>
-                                                                                <input type="text" class="form-control" id="txtLastName" name="txtLastName">
-
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="txtEmail">Email</label>
-                                                                                <input type="email" class="form-control" id="txtEmail" name="txtEmail">
-
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="txtNumTarjet">Número de tarjeta</label>
-                                                                                <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <span href='#' id="error_message" class='text-center new-account' style='color:red'></span>
-                                                                            </div>
-
-
-                                                                            <button type="submit" class="btn btn-primary">Guardar</button>
-                                                                        </form>
-
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <!--End modal window -->
-                                                    </td>
-                                                </tr>
+                                            <tbody id="historyTable-tbody">
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -458,6 +379,10 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                     }
                 });
             });
+            $("#employee").click(function (e) {
+                $("#allEmployees").show();
+                $("#historyTable").hide();
+              });
 
             $("#history").click(function (e) {
                 
@@ -465,7 +390,34 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 $("#historyTable").show();
                 
                 $.get("../controller/employeesHistory.php",function (data) { 
-                    console.log(JSON.parse(data));
+
+                    const json=JSON.parse(data);
+                    var tbody=document.querySelector("#historyTable-tbody");
+                    console.log(tbody);
+                    for(let aux of json){    
+                        tbody.innerHTML+=`
+                            <tr><td>${aux.tarjet_number}</td>
+                            <td>
+                                ${aux.name} ${aux.lastName}
+                            </td>
+                           <td>
+                                ${aux.mail}
+                            </td>
+                            <td>
+                                ${aux.InJob}
+                            </td>
+                            <td>
+                                ${aux.OutEat}
+                            </td>
+                            <td>
+                                ${aux.OutJob}
+                            </td>
+                            <td>
+                                ${aux.Date}
+                            </td>
+                            </tr>
+                        `;
+                    }
                  });
               })
         });

@@ -6,6 +6,4 @@ $conn= new Connection();
 $historyArray=$conn->employeesHistory();
 
 print_r(json_encode($historyArray));
-
-
 ?>

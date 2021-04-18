@@ -101,7 +101,7 @@ class Connection
     public function employeesHistory()
     {
         $history_array = array();
-        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.out_job FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id");
+        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.out_job,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id");
 
 
         while ($row = $query->fetch_array()) {
@@ -111,17 +111,19 @@ class Connection
             $employee->setName($row[1]);
             $employee->setLastName($row[2]);
             $employee->setMail($row[3]);
-            $employee->setIn_job($row[4]);
+            $employee->setInJob($row[4]);
+            
             if($row[5]!=null){
-                $employee->setOut_eat($row[5]);
+                $employee->setOutEat($row[5]);
             }else{
-                $employee->setOut_eat("Sin registro");
+                $employee->setOutEat("Sin registro");
             }
             if($row[6]!=null){
-                $employee->setOut_job($row[6]);
+                $employee->setoutJob($row[6]);
             }else{
-                $employee->setOut_job("Sin registro");
+                $employee->setOutJob("Sin registro");
             }
+            $employee->setDate($row[7]);
             
             
            
