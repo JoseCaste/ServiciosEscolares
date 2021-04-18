@@ -81,10 +81,8 @@
                     url: "../controller/timeNow.php",
                     data: JSON.stringify(json),
                     success: function(response) {
-                        //window.location.reload();
                         console.log(response)
                         if (confirm(response.message)) {
-                            //console.log('Thing was saved to the database.');
                             $.ajax({
                                 contentType: "application/json",
                                 dataType: "json",
