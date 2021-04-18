@@ -1,5 +1,6 @@
 <?php
 require_once("../model/Employee.php");
+require_once("../model/EmployeeHistory.php");
 class Connection
 {
     public  $db;
@@ -27,6 +28,15 @@ class Connection
         } else {
             return false;
         }
+    }
+    public function getSpecificEmployee($tarjet_number)
+    {
+        
+        $query = mysqli_query($this->db, "SELECT * FROM employee WHERE tarjet_number='$tarjet_number'");
+
+        $row = $query->fetch_array();
+            return $row['id_employee'] ;
+        
     }
     public function getAllEmployee()
     {
@@ -65,6 +75,60 @@ class Connection
         }else{
             return true;
         }
+    }
+    public function insertInputOutput($time,$tarjet_number,$whatTime){
+
+        $employee_id= $this->getSpecificEmployee($tarjet_number);
+        $query=mysqli_query($this->db,"INSERT INTO IO_employee (employee_id , in_job) values($employee_id,'$time')");
+        if($query){
+            return true;
+        }else{
+            return false;
+        }
+        
+
+    }
+    public function updateInputOutput($time,$tarjet_number,$whatTime){
+        $employee_id= $this->getSpecificEmployee($tarjet_number);
+        $_query="UPDATE IO_employee SET ".$whatTime."='$time' WHERE employee_id=$employee_id and _date=curdate()";
+        $query=mysqli_query($this->db,$_query);
+        if($query){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function employeesHistory()
+    {
+        $history_array = array();
+        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.out_job FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id");
+
+
+        while ($row = $query->fetch_array()) {
+            
+            $employee= new EmployeeHistory();
+            $employee->setTarjetNumber($row[0]);
+            $employee->setName($row[1]);
+            $employee->setLastName($row[2]);
+            $employee->setMail($row[3]);
+            $employee->setIn_job($row[4]);
+            if($row[5]!=null){
+                $employee->setOut_eat($row[5]);
+            }else{
+                $employee->setOut_eat("Sin registro");
+            }
+            if($row[6]!=null){
+                $employee->setOut_job($row[6]);
+            }else{
+                $employee->setOut_job("Sin registro");
+            }
+            
+            
+           
+            
+            array_push($history_array,$employee);
+        }
+        return $history_array;
     }
 }
 class Connect_to_database

@@ -2,11 +2,11 @@
 
 
 class Employee{
-    public $id;
-    public $name;
-    public $lastName;
-    public $mail;
-    public $tarjet_number;
+    private $id;
+    private $name;
+    private $lastName;
+    private $mail;
+    private $tarjet_number;
 
     public function __construct(){
 

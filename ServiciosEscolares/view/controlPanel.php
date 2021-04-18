@@ -16,7 +16,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link href="../assetsassets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link href="../../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/libs/css/style.css">
     <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="../../assets/vendor/charts/chartist-bundle/chartist.css">
@@ -83,190 +83,322 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                 Menu
                             </li>
                             <li class="nav-item ">
+
                                 <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Empleados <span class="badge badge-success">6</span></a>
+                            </li>
+                            <div id="submenu-1" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                    <li class="nav-item">
+                                        <a id="history" class="nav-link" href="#">Historial</a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
                             </li>
                         </ul>
                     </div>
-                </nav>
+
+
+                    </ul>
             </div>
+            </nav>
         </div>
-        <!-- ============================================================== -->
-        <!-- end left sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- wrapper  -->
-        <!-- ============================================================== -->
-        <div class="dashboard-wrapper">
-            <div class="dashboard-ecommerce">
-                <div class="container-fluid dashboard-content ">
-                    <!-- ============================================================== -->
-                    <!-- pageheader  -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="page-header">
-                                <h2 class="pageheader-title">Servicios escolares</h2>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end left sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <!-- ============================================================== -->
+                <!-- pageheader  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Servicios escolares</h2>
 
 
-                                <div class="page-breadcrumb">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Empleados</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Listado</li>
-                                        </ol>
-                                    </nav>
-                                </div>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Empleados</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Listado</li>
+                                    </ol>
+                                </nav>
                             </div>
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- end pageheader  -->
-                    <!-- ============================================================== -->
-                    <div class="ecommerce-widget">
-                        <div class="row">
-                            <!-- ============================================================== -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader  -->
+                <!-- ============================================================== -->
+                <div class="ecommerce-widget">
+                    <div id="allEmployees" class="row">
+                        <!-- ============================================================== -->
 
-                            <!-- ============================================================== -->
+                        <!-- ============================================================== -->
 
-                            <!-- recent orders  -->
-                            <!-- ============================================================== -->
-                            <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" style="width: 100%;">
-                                <div class="card">
-                                    <h5 class="card-header">Lista de empleados</h5>
-                                    <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead class="bg-light">
-                                                    <tr class="border-0">
-                                                        <th class="border-0">Id del empleado</th>
-                                                        <th class="border-0">Nombre</th>
-                                                        <th class="border-0">Apellido</th>
-                                                        <th class="border-0">Correo electrónico</th>
-                                                        <th class="border-0">Número de tarjeta</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    for ($i = 0; $i < count($controller->employee_array); $i++) {
-                                                        echo "<tr>"
-                                                            .
-                                                            "
+                        <!-- recent orders  -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" style="width: 100%;">
+                            <div class="card">
+                                <h5 class="card-header">Lista de empleados</h5>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="bg-light">
+                                                <tr class="border-0">
+                                                    <th class="border-0">Id del empleado</th>
+                                                    <th class="border-0">Nombre</th>
+                                                    <th class="border-0">Apellido</th>
+                                                    <th class="border-0">Correo electrónico</th>
+                                                    <th class="border-0">Número de tarjeta</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                for ($i = 0; $i < count($controller->employee_array); $i++) {
+                                                    echo "<tr>"
+                                                        .
+                                                        "
                                                                 <td>" . $controller->employee_array[$i]->getId() . "</td>"
-                                                            .
-                                                            "
+                                                        .
+                                                        "
                                                                 <td>" . $controller->employee_array[$i]->getName() . "</td>"
-                                                            .
-                                                            "
+                                                        .
+                                                        "
                                                                 <td>" . $controller->employee_array[$i]->getLastName() . "</td>"
-                                                            .
-                                                            "
+                                                        .
+                                                        "
                                                                 <td>" . $controller->employee_array[$i]->getMail() . "</td>"
-                                                            .
-                                                            "
+                                                        .
+                                                        "
                                                                 <td>" . $controller->employee_array[$i]->getTarjetNumber() . "</td>"
-                                                            .
-                                                            "</tr>";
-                                                    }
-                                                    ?>
-                                                    <tr>
-                                                        <td colspan="9">
+                                                        .
+                                                        "</tr>";
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td colspan="9">
 
-                                                            <!--
+                                                        <!--
                                      Modal window
 -->
-                                                            <!-- Trigger the modal with a button -->
-                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
+                                                        <!-- Trigger the modal with a button -->
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
 
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="myModal" role="dialog">
-                                                                <div class="modal-dialog">
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="myModal" role="dialog">
+                                                            <div class="modal-dialog">
 
-                                                                    <!-- Modal content-->
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                                                                        </div>
-                                                                        <div class="modal-body">
+                                                                    </div>
+                                                                    <div class="modal-body">
 
-                                                                            <form method="POST" id="userForm">
-                                                                                <div class="form-group">
-                                                                                    <label for="txtname">Nombre</label>
-                                                                                    <input type="text" class="form-control" id="txtName" name="txtName">
+                                                                        <form method="POST" id="userForm">
+                                                                            <div class="form-group">
+                                                                                <label for="txtname">Nombre</label>
+                                                                                <input type="text" class="form-control" id="txtName" name="txtName">
 
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="txtLastName">Apellido</label>
-                                                                                    <input type="text" class="form-control" id="txtLastName" name="txtLastName">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="txtLastName">Apellido</label>
+                                                                                <input type="text" class="form-control" id="txtLastName" name="txtLastName">
 
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="txtEmail">Email</label>
-                                                                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="txtEmail">Email</label>
+                                                                                <input type="email" class="form-control" id="txtEmail" name="txtEmail">
 
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="txtNumTarjet">Número de tarjeta</label>
-                                                                                    <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <span href='#' id="error_message" class='text-center new-account' style='color:red'></span>
-                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="txtNumTarjet">Número de tarjeta</label>
+                                                                                <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <span href='#' id="error_message" class='text-center new-account' style='color:red'></span>
+                                                                            </div>
 
 
-                                                                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                                                            </form>
-
-                                                                        </div>
+                                                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                                                        </form>
 
                                                                     </div>
 
                                                                 </div>
+
                                                             </div>
+                                                        </div>
 
 
 
-                                                            <!--End modal window -->
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                        <!--End modal window -->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            <!-- ============================================================== -->
-                            <!-- end recent orders  -->
                         </div>
+                        <!-- ============================================================== -->
+                        <!-- end recent orders  -->
                     </div>
-                </div>
-            </div>
 
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            Copyright © 2021. Todos los derechos reservados <a href="https://Proyecto.com">Proyecto.com</a>.
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block">
-                                <a href="javascript: void(0);">Acerca de</a>
-                                <a href="javascript: void(0);">Contactanos</a>
+                     <div id="historyTable" class="row">
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+
+                        <!-- recent orders  -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" style="width: 100%;">
+                            <div class="card">
+                                <h5 class="card-header">Historial de los empleados</h5>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="bg-light">
+                                                <tr class="border-0">
+                                                    <th class="border-0">Número de tarjeta</th>
+                                                    <th class="border-0">Nombre</th>
+                                                    <th class="border-0">Apellido</th>
+                                                    <th class="border-0">Hora de entrada</th>
+                                                    <th class="border-0">Hora de comida</th>
+                                                    <th class="border-0">Hora de salida</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                for ($i = 0; $i < count($controller->employee_array); $i++) {
+                                                    echo "<tr>"
+                                                        .
+                                                        "
+                                                                <td>" . $controller->employee_array[$i]->getId() . "</td>"
+                                                        .
+                                                        "
+                                                                <td>" . $controller->employee_array[$i]->getName() . "</td>"
+                                                        .
+                                                        "
+                                                                <td>" . $controller->employee_array[$i]->getLastName() . "</td>"
+                                                        .
+                                                        "
+                                                                <td>" . $controller->employee_array[$i]->getMail() . "</td>"
+                                                        .
+                                                        "
+                                                                <td>" . $controller->employee_array[$i]->getTarjetNumber() . "</td>"
+                                                        .
+                                                        "</tr>";
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td colspan="9">
+
+                                                        <!--
+                                     Modal window
+-->
+                                                        <!-- Trigger the modal with a button -->
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
+
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="myModal" role="dialog">
+                                                            <div class="modal-dialog">
+
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                                                    </div>
+                                                                    <div class="modal-body">
+
+                                                                        <form method="POST" id="userForm">
+                                                                            <div class="form-group">
+                                                                                <label for="txtname">Nombre</label>
+                                                                                <input type="text" class="form-control" id="txtName" name="txtName">
+
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="txtLastName">Apellido</label>
+                                                                                <input type="text" class="form-control" id="txtLastName" name="txtLastName">
+
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="txtEmail">Email</label>
+                                                                                <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="txtNumTarjet">Número de tarjeta</label>
+                                                                                <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <span href='#' id="error_message" class='text-center new-account' style='color:red'></span>
+                                                                            </div>
+
+
+                                                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                                                        </form>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <!--End modal window -->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!-- ============================================================== -->
+                        <!-- end recent orders  -->
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Copyright © 2021. Todos los derechos reservados <a href="https://Proyecto.com">Proyecto.com</a>.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">Acerca de</a>
+                            <a href="javascript: void(0);">Contactanos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- ============================================================== -->
-        <!-- end wrapper  -->
+        <!-- end footer -->
         <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end wrapper  -->
+    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
@@ -295,6 +427,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            $("#historyTable").hide();
             $('#userForm').submit(function(e) {
                 e.preventDefault();
                 const form = new FormData(e.target);
@@ -312,20 +445,31 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 };
                 const _json = JSON.stringify(json);
                 $.ajax({
-                     contentType: "application/json",
-                     dataType:"json",
-                     type: "POST",
-                     url: "../controller/createUserController.php",
-                     data: _json,
-                     success: function(response){
+                    contentType: "application/json",
+                    dataType: "json",
+                    type: "POST",
+                    url: "../controller/createUserController.php",
+                    data: _json,
+                    success: function(response) {
                         window.location.reload();
-                     },
-                     error: function(error){
-                         $("#error_message").text(error.responseJSON.message);
-                     }
-                 });
+                    },
+                    error: function(error) {
+                        $("#error_message").text(error.responseJSON.message);
+                    }
+                });
             });
+
+            $("#history").click(function (e) {
+                
+                $("#allEmployees").hide();
+                $("#historyTable").show();
+                
+                $.get("../controller/employeesHistory.php",function (data) { 
+                    console.log(JSON.parse(data));
+                 });
+              })
         });
+
     </script>
 </body>
 
