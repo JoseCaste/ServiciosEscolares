@@ -77,33 +77,18 @@
                     contentType: "application/json",
                     dataType: "json",
                     type: "POST",
-                    url: "../controller/timeNow.php",
+                    url: "../controller/employee_checkController.php",
                     data: JSON.stringify(json),
                     success: function(response) {
-                        console.log(response)
-                        if (confirm(response.message)) {
-                            $.ajax({
-                                contentType: "application/json",
-                                dataType: "json",
-                                type: "POST",
-                                url: "../controller/employee_checkController.php",
-                                data: JSON.stringify(json),
-                                success: function(response) {
-                                    $("#message").css("color","blue");
-                                    $("#message").text(response.message);
-
-                                },
-                                error: function(error) {
-                                    console.log(error)
-                                }
-                            });
-                        }
+                        $("#message").css("color", "blue");
+                        $("#message").text(response.message);
 
                     },
                     error: function(error) {
                         console.log(error)
                     }
                 });
+
             })
         });
     </script>

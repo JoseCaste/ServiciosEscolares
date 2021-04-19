@@ -285,6 +285,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                     <th class="border-0">Correo</th>
                                                     <th class="border-0">Entrada</th>
                                                     <th class="border-0">Comida</th>
+                                                    <th class="border-0">Regreso</th>
                                                     <th class="border-0">Salida</th>
                                                     <th class="border-0">Fecha</th>
                                                 </tr>
@@ -417,6 +418,9 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                             </td>
                             <td>
                                 ${aux.OutEat}
+                            </td>
+                            <td>
+                                ${aux.BackEat}
                             </td>
                             <td>
                                 ${aux.OutJob}

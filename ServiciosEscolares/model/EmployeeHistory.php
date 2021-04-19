@@ -4,6 +4,7 @@ class EmployeeHistory extends Employee
     private $inJob;
     private $outEat;
     private $outJob;
+    private $backJob;
     private $date;
 
     public function __construct()
@@ -31,6 +32,14 @@ class EmployeeHistory extends Employee
     public function getOutJob()
     {
         return $this->outJob;
+    }
+    public function setBackEat($back_eat)
+    {
+        return $this->BackEat = $back_eat;
+    }
+    public function getBackJob()
+    {
+        return $this->backJob;
     }
 
     public function setOutJob($out_job)
