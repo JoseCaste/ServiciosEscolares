@@ -24,9 +24,9 @@ class Connection
 
         $row = $query->fetch_array();
         if ($query != null && $row['username'] == $username && $row['password'] == $password) {
-            return true;
+            return $row['name']." ".$row['lastname'];
         } else {
-            return false;
+            return null;
         }
     }
     public function getSpecificEmployee($tarjet_number)
@@ -79,7 +79,7 @@ class Connection
     public function insertInputOutput($time,$tarjet_number,$whatTime){
 
         $employee_id= $this->getSpecificEmployee($tarjet_number);
-        $query=mysqli_query($this->db,"INSERT INTO IO_employee (employee_id , in_job) values($employee_id,'$time')");
+        $query=mysqli_query($this->db,"INSERT INTO IO_employee (employee_id , in_job,_date) values($employee_id,'$time',curdate())");
         if($query){
             return true;
         }else{

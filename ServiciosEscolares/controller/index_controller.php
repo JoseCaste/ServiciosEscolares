@@ -12,9 +12,11 @@ if ($username != null && $password != null) {
 function validate_admin($username, $password)
 {
     $conn = new Connection();
-    if ($conn->getAdmin($username, $password)) {
-        $_SESSION["username"]=$username;
-        $_SESSION["password"]=$password;
+    $name=$conn->getAdmin($username, $password);
+    $_SESSION["username"]=$username;
+    $_SESSION["password"]=$password;
+    if ( $name!= null) {
+        $_SESSION['name']=$name;
         header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/ServiciosEscolares/view/controlPanel.php");
     } else {
         $_SESSION['invalid']="Credenciales no validas";

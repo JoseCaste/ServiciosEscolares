@@ -9,14 +9,13 @@ $json = file_get_contents("php://input");
 $tarjet_number = json_decode($json);
 
 $in= '13:59:59';
-//$in= '13:00:00'; //test
 $out_eat='15:00:00';
 $out_to_job='19:00:00';
 
 $conn= new Connection();
 
 $timestamp= time();
-$date_time = date("H:i:s", $timestamp); //this time is when user puts her/his tarjet number to registrer
+$date_time = date("H:i:s", $timestamp); //this time is when user puts her/his tarjet number to register
 
 
 if($date_time<= date('H:i:s',strtotime($in))){
