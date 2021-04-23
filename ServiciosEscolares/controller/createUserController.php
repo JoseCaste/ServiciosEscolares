@@ -13,47 +13,53 @@ $mail =  $jsonObject->txtEmail;
 $tarjet_number =  $jsonObject->txtNumTarjet;
 
 $regular_expresion = "/^[A-Za-z\\ \']+$/";
-if ($conn->verifyTarjetNumber($tarjet_number)) {
+if ($tarjet_number != null || $tarjet_number != "") {
+    if ($conn->verifyTarjetNumber($tarjet_number)) {
 
-    if (preg_match($regular_expresion, $name)) {
-        if (preg_match($regular_expresion, $lastname)) {
-            if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                if ($conn->addEmployee($name, $lastname, $mail, $tarjet_number)) {
-                    
-                    $return= array(
-                        'status'=>200,
-                        "message"=> "Empleado guardado"
+        if (preg_match($regular_expresion, $name)) {
+            if (preg_match($regular_expresion, $lastname)) {
+                if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                    if ($conn->addEmployee($name, $lastname, $mail, $tarjet_number)) {
+
+                        $return = array(
+                            'status' => 200,
+                            "message" => "Empleado guardado"
+                        );
+                        http_response_code(200);
+                    }
+                } else {
+                    $return = array(
+                        'status' => 400,
+                        "message" => "El email no es válido"
                     );
-                    http_response_code(200);
-                    
+                    http_response_code(400);
                 }
             } else {
-                $return= array(
-                    'status'=>400,
-                    "message"=> "El email no es válido"
+                $return = array(
+                    'status' => 400,
+                    "message" => "El apellido no es válido"
                 );
                 http_response_code(400);
             }
         } else {
-            $return= array(
-                'status'=>400,
-                "message"=> "El apellido no es válido"
+            $return = array(
+                'status' => 400,
+                "message" => "El nombre no es válido"
             );
             http_response_code(400);
         }
     } else {
-        $return= array(
-            'status'=>400,
-            "message"=> "El nombre no es válido"
+        $return = array(
+            'status' => 400,
+            "message" => "El número de tarjeta ya existe"
         );
         http_response_code(400);
     }
-} else {
-    $return= array(
-        'status'=>400,
-        "message"=> "El número de tarjeta ya existe"
+}else{
+    $return = array(
+        'status' => 400,
+        "message" => "Debe proporcionar un número de tarjeta"
     );
     http_response_code(400);
 }
 print_r(json_encode($return));
-
