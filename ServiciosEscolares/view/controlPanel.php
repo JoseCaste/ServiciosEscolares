@@ -52,15 +52,15 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name"><?php 
-                                    if(isset($_SESSION['name'])){
-                                        echo $name=$_SESSION['name'];
-                                    }
-                                    
-                                    
-                                    
-                                    ?>
-                                    
+                                    <h5 class="mb-0 text-white nav-user-name"><?php
+                                                                                if (isset($_SESSION['name'])) {
+                                                                                    echo $name = $_SESSION['name'];
+                                                                                }
+
+
+
+                                                                                ?>
+
                                     </h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
@@ -95,15 +95,18 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
                                 <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Empleados <span class="badge badge-success">6</span></a>
                             </li>
-                            <div id="submenu-1" class="collapse submenu" style="">
+                            <div id="submenu-1" class="collapse submenu" >
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                    <a id="employee" class="nav-link" href="#">Empleados</a>
+                                        <a id="employee" class="nav-link" href="#">Empleados</a>
                                     </li>
                                     <li class="nav-item">
                                         <a id="history" class="nav-link" href="#">Historial</a>
                                     </li>
-                                   
+                                    <li class="nav-item">
+                                        <a id="restrictions" class="nav-link" href="#">Restricciones de comida</a>
+                                    </li>
+
                                 </ul>
                             </div>
                             </li>
@@ -218,22 +221,22 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                                         <form method="POST" id="userForm">
                                                                             <div class="form-group">
                                                                                 <label for="txtname">Nombre</label>
-                                                                                <input type="text" class="form-control" id="txtName" name="txtName">
+                                                                                <input type="text" class="form-control" id="txtName" name="txtName" onchange="checkField(this)">
 
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="txtLastName">Apellido</label>
-                                                                                <input type="text" class="form-control" id="txtLastName" name="txtLastName">
+                                                                                <input type="text" class="form-control" id="txtLastName" name="txtLastName" onchange="checkField(this)">
 
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="txtEmail">Email</label>
-                                                                                <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+                                                                                <input type="email" class="form-control" id="txtEmail" name="txtEmail" onchange="checkField(this)">
 
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="txtNumTarjet">Número de tarjeta</label>
-                                                                                <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet">
+                                                                                <input type="text" class="form-control" id="txtNumTarjet" name="txtNumTarjet" onchange="checkField(this)">
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <span href='#' id="error_message" class='text-center new-account' style='color:red'></span>
@@ -265,7 +268,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                         <!-- end recent orders  -->
                     </div>
 
-                     <div id="historyTable" class="row">
+                    <div id="historyTable" class="row">
                         <!-- ============================================================== -->
 
                         <!-- ============================================================== -->
@@ -291,7 +294,54 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                 </tr>
                                             </thead>
                                             <tbody id="historyTable-tbody">
-                                                
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end recent orders  -->
+                    </div>
+
+                    <div id="restrictionTable" class="row">
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+
+                        <!-- recent orders  -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" style="width: 100%;">
+                            <div class="card">
+                                <h5 class="card-header">Restricciones</h5>
+                                <div class="card-header row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar número de tarjeta">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button class="btn btn-success" type="submit">Buscar</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="bg-light">
+                                                <tr class="border-0">
+                                                    <th class="border-0">Tarjeta</th>
+                                                    <th class="border-0">Nombre completo</th>
+                                                    <th class="border-0">fecha</th>
+                                                    <th class="border-0">Restringido</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="restrictionTable-tbody">
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -304,7 +354,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 </div>
             </div>
         </div>
-
+                           
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
@@ -357,8 +407,33 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
+        function checkField(params) {
+            const json={
+                field: params.name,
+                value: params.value
+            }
+            $.ajax({
+                contentType: "application/json",
+                    dataType: "json",
+                    type: "POST",
+                    url: "../controller/validateFieldEmployee.php",
+                    data: JSON.stringify(json),
+                    success: function(response) {
+                        console.log(response)
+                        
+                        if($("#error_message").text() != null){
+                            $("#error_message").text("");
+                        }
+                    },
+                    error: function(error) {
+                       $("#error_message").text(error.responseJSON.message);
+
+                    }
+            });
+        }
         $(document).ready(function() {
             $("#historyTable").hide();
+            $("#restrictionTable").hide();
             $('#userForm').submit(function(e) {
                 e.preventDefault();
                 const form = new FormData(e.target);
@@ -389,23 +464,29 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                     }
                 });
             });
-            $("#employee").click(function (e) {
+            $("#employee").click(function(e) {
                 $("#allEmployees").show();
                 $("#historyTable").hide();
-              });
-
-            $("#history").click(function (e) {
+                $("#restrictionTable").hide();
                 
+            });
+            $("#restrictions").click(function() {
+                $("#restrictionTable").show();
+                $("#historyTable").hide();
+                $("#allEmployees").hide();
+              });
+            $("#history").click(function(e) {
+                $("#restrictionTable").hide();
                 $("#allEmployees").hide();
                 $("#historyTable").show();
-                
-                $.get("../controller/employeesHistory.php",function (data) { 
 
-                    const json=JSON.parse(data);
-                    var tbody=document.querySelector("#historyTable-tbody");
-                    tbody.innerHTML="";
-                    for(let aux of json){    
-                        tbody.innerHTML+=`
+                $.get("../controller/employeesHistory.php", function(data) {
+
+                    const json = JSON.parse(data);
+                    var tbody = document.querySelector("#historyTable-tbody");
+                    tbody.innerHTML = "";
+                    for (let aux of json) {
+                        tbody.innerHTML += `
                             <tr><td>${aux.tarjet_number}</td>
                             <td>
                                 ${aux.name} ${aux.lastName}
@@ -431,10 +512,9 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                             </tr>
                         `;
                     }
-                 });
-              })
+                });
+            })
         });
-
     </script>
 </body>
 

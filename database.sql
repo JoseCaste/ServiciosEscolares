@@ -40,3 +40,8 @@ select * from user_administrator;
 
 create table IO_employee (id_IO mediumint auto_increment, employee_id mediumint, in_job time,out_eat time,back_eat time, out_job time,_date date,
 primary key(id_IO), foreign key(employee_id)references employee(id_employee));
+
+select * from IO_employee;
+
+/*creating a restriction_food*/
+create table restriction_food(tarjet_number varchar(10), name text, lastname text, _date date, restrinction boolean);
