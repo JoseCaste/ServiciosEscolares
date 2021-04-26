@@ -95,7 +95,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
                                 <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Empleados <span class="badge badge-success">6</span></a>
                             </li>
-                            <div id="submenu-1" class="collapse submenu" >
+                            <div id="submenu-1" class="collapse submenu">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
                                         <a id="employee" class="nav-link" href="#">Empleados</a>
@@ -199,7 +199,6 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                 ?>
                                                 <tr>
                                                     <td colspan="9">
-
                                                         <!--
                                      Modal window
 -->
@@ -316,16 +315,16 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                             <div class="card">
                                 <h5 class="card-header">Restricciones</h5>
                                 <div class="card-header row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <i class="fas fa-search h4 text-body"></i>
+                                    <div class="col-auto pr-sm-3">
+                                        <i class="fas fa-search h4 text-body "></i>
                                     </div>
                                     <!--end of col-->
-                                    <div class="col">
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar número de tarjeta">
+                                    <div class="col pr-sm-3">
+                                        <input id="fieldTarjetNumber" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar número de tarjeta">
                                     </div>
                                     <!--end of col-->
                                     <div class="col-auto">
-                                        <button class="btn btn-success" type="submit">Buscar</button>
+                                        <button class="btn btn-success" type="button" onclick="searchEmployee(this)">Buscar</button>
                                     </div>
                                     <!--end of col-->
                                 </div>
@@ -334,15 +333,18 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                         <table class="table">
                                             <thead class="bg-light">
                                                 <tr class="border-0">
-                                                    <th class="border-0">Tarjeta</th>
-                                                    <th class="border-0">Nombre completo</th>
-                                                    <th class="border-0">fecha</th>
-                                                    <th class="border-0">Restringido</th>
+                                                    <th class="border-0 text-center">Tarjeta</th>
+                                                    <th class="border-0 text-center">Nombre completo</th>
+                                                    <th class="border-0 text-center">fecha</th>
+                                                    <th class="border-0 text-center">Restringido</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="restrictionTable-tbody">
 
                                             </tbody>
+                                            <td colspan="9">
+                                                    <span href='#' id="error_restriction" class='text-center new-account' style='color:red'></span>
+                                            </td>
                                         </table>
                                     </div>
                                 </div>
@@ -354,7 +356,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 </div>
             </div>
         </div>
-                           
+
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
@@ -408,27 +410,94 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         function checkField(params) {
-            const json={
+            const json = {
                 field: params.name,
                 value: params.value
             }
             $.ajax({
                 contentType: "application/json",
+                dataType: "json",
+                type: "POST",
+                url: "../controller/validateFieldEmployee.php",
+                data: JSON.stringify(json),
+                success: function(response) {
+                    console.log(response)
+
+                    if ($("#error_message").text() != null) {
+                        $("#error_message").text("");
+                    }
+                },
+                error: function(error) {
+                    $("#error_message").text(error.responseJSON.message);
+
+                }
+            });
+        }
+
+        function setRestrinction() {
+           
+            var restrictionTarjetNumber= $("#restrictionTarjetNumber").text();
+            var restrictionName= $("#restrictionName").text();
+            var restrictionDate= $("#restrictionDate").text();
+            var restrictionCheckBox= $("#restrictionCheckBox").text();
+            restrictionCheckBox=$('#restrictionCheckBox').is(":checked");
+            const json={
+                tarjetNumber: restrictionTarjetNumber,
+                name: restrictionName,
+                date: restrictionDate,
+                restriction: restrictionCheckBox
+            }
+            $.ajax({
+                    contentType: "application/json",
                     dataType: "json",
                     type: "POST",
-                    url: "../controller/validateFieldEmployee.php",
+                    url: "../controller/addRestrinctionFoodEmployee.php",
                     data: JSON.stringify(json),
                     success: function(response) {
-                        console.log(response)
-                        
-                        if($("#error_message").text() != null){
-                            $("#error_message").text("");
-                        }
+                        console.log(response);
                     },
                     error: function(error) {
-                       $("#error_message").text(error.responseJSON.message);
-
+                        console.log(error)
+                        $("#error_restriction").text(error.responseJSON.message);
                     }
+                });
+        }
+
+        function searchEmployee(e) {
+            var employeeId = $("#fieldTarjetNumber").val();
+            const json = {
+                employeeId: employeeId
+            }
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "POST",
+                url: "../controller/getRestrinctionEmployee.php",
+                data: JSON.stringify(json),
+                success: function(response) {
+                    console.log(response);
+                    var restrictionTable_tbody = document.querySelector("#restrictionTable-tbody");
+                    restrictionTable_tbody .innerHTML="";
+                    var checkBox;
+                    if (response.restriction == "0") {
+                        checkBox = `<input id="restrictionCheckBox" class="text-center" type="checkbox" onclick="setRestrinction()">`;
+                    } else {
+                        checkBox = `<input id="restrictionCheckBox" class="text-center" type="checkbox" checked onclick="setRestrinction()">`;
+                    }
+
+                    restrictionTable_tbody.innerHTML += `
+                            <tr>
+                            <td id="restrictionTarjetNumber" class="text-center">${response.tarjet_number}</td>
+                            <td id="restrictionName" class="text-center">${response.name} ${response.lastName}</td>
+                            <td id="restrictionDate" class="text-center">${response.date}</td>
+                            <td class="text-center">${checkBox}</td>
+                            </tr>`
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+
             });
         }
         $(document).ready(function() {
@@ -468,13 +537,13 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 $("#allEmployees").show();
                 $("#historyTable").hide();
                 $("#restrictionTable").hide();
-                
+
             });
             $("#restrictions").click(function() {
                 $("#restrictionTable").show();
                 $("#historyTable").hide();
                 $("#allEmployees").hide();
-              });
+            });
             $("#history").click(function(e) {
                 $("#restrictionTable").hide();
                 $("#allEmployees").hide();

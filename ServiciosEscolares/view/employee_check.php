@@ -40,8 +40,9 @@
                             <!-- Trigger the modal with a button -->
                             <span class='text-center new-account' id="message"></span>
                         </div>
-                    </form>
 
+                        <!-- Modal -->
+                    </form>
                 </div>
             </div>
         </div>
@@ -66,6 +67,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+
+
             $("#formRegister").submit(function(e) {
                 e.preventDefault();
                 const tarjet_numer = $("#tarjet_number").val();
@@ -85,7 +88,27 @@
 
                     },
                     error: function(error) {
-                        console.log(error)
+                        console.log(error.responseJSON);
+                        if (confirm(error.responseJSON.message)) {
+                            $.ajax({
+                                contentType: "application/json",
+                                dataType: "json",
+                                type: "POST",
+                                url: "../controller/insertOutJob.php",
+                                data: JSON.stringify(json),
+                                success: function(response) {
+                                    $("#message").css("color", "blue");
+                                    $("#message").text(response.message);
+
+                                },
+                                error: function(error) {
+                                    console.log(error.responseJSON);
+                                    if (confirm(error.responseJSON.message)) {
+
+                                    }
+                                }
+                            });
+                        }
                     }
                 });
 

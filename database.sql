@@ -44,4 +44,11 @@ primary key(id_IO), foreign key(employee_id)references employee(id_employee));
 select * from IO_employee;
 
 /*creating a restriction_food*/
-create table restriction_food(tarjet_number varchar(10), name text, lastname text, _date date, restrinction boolean);
+create table restriction_food(tarjet_number varchar(10), name text, lastname text, _date date, restriction boolean);
+ALTER TABLE restriction_food ADD PRIMARY KEY(tarjet_number, _date);
+select * from restriction_food order by(_date);
+SELECT * FROM restriction_food WHERE tarjet_number='00008' AND _date=curdate();
+
+insert into restriction_food values('00008','Juan','Castellanos', curdate(),true);
+UPDATE restriction_food SET restriction=false WHERE tarjet_number='00007' AND _date=curdate();
+UPDATE restriction_food SET restriction=false WHERE tarjet_number='00007' AND _date=curdate();

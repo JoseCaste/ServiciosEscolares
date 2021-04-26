@@ -1,6 +1,7 @@
 <?php
 require_once("../model/Employee.php");
 require_once("../model/EmployeeHistory.php");
+require_once("../model/EmployeeRestrinction.php");
 class Connection
 {
     public  $db;
@@ -81,7 +82,7 @@ class Connection
         $employee_id = $this->getSpecificEmployee($tarjet_number);
         $query = mysqli_query($this->db, "SELECT * FROM IO_employee WHERE employee_id= ${employee_id} and _date=curdate()");
         if ($row = $query->fetch_array()) {
-            
+
             if ($row['in_job'] != null) {
                 if ($row['out_eat'] != null) {
                     if ($row['back_eat'] != null) {
@@ -108,6 +109,24 @@ class Connection
             }
         }
     }
+    public function getInJob($tarjet_number,$date_time)
+    {
+        $id=$this->getSpecificEmployee($tarjet_number);
+        $query=mysqli_query($this->db,"SELECT in_job FROM IO_employee WHERE employee_id=$id and _date=curdate() ");
+        if (!($row = $query->fetch_array())) {
+            $query=mysqli_query($this->db,"INSERT INTO IO_employee (employee_id , in_job,_date) values ($id,'$date_time',curdate())");
+            return true;
+        }else{
+            return false;
+        } 
+    }
+    public function insertOutJob($tarjet_number,$date_time){
+        $id=$this->getSpecificEmployee($tarjet_number);
+        $query=mysqli_query($this->db,"INSERT INTO IO_employee (employee_id , out_job,_date) values ($id,'$date_time',curdate())");
+        if($query){
+            return true;
+        }else return false;
+    }
     public function employeesHistory()
     {
         $history_array = array();
@@ -128,9 +147,9 @@ class Connection
             } else {
                 $employee->setOutEat("Sin registro");
             }
-            if($row[6]!=null){
+            if ($row[6] != null) {
                 $employee->setBackEat($row[6]);
-            }else{
+            } else {
                 $employee->setBackEat("Sin registro");
             }
             if ($row[7] != null) {
@@ -139,13 +158,78 @@ class Connection
                 $employee->setOutJob("Sin registro");
             }
             $employee->setDate($row[8]);
-
-
-
-
             array_push($history_array, $employee);
         }
         return $history_array;
+    }
+    public function employeeRestriction($tarjet_number){
+        $query = mysqli_query($this->db, "SELECT * FROM restriction_food WHERE tarjet_number='$tarjet_number' AND _date=curdate()");
+        if ($query != null) {
+            if ($row = $query->fetch_array()) {
+                $employee = new EmployeeRestrinction();
+                $employee->setName($row[1]);
+                $employee->setLastName($row[2]);
+                $employee->setTarjetNumber($tarjet_number);
+                $employee->setDate($row[3]);
+                $employee->setRestrinction($row[4]);
+                return $employee;
+            }else{
+                return null;
+            }
+        }else return null;
+
+    }
+    public function getEmployeeRestriction($tarjet_number)
+    {
+        $query = mysqli_query($this->db, "SELECT * FROM restriction_food WHERE tarjet_number='$tarjet_number' AND _date=curdate()");
+        if ($query != null) {
+            if ($row = $query->fetch_array()) {
+                $employee = new EmployeeRestrinction();
+                $employee->setName($row[1]);
+                $employee->setLastName($row[2]);
+                $employee->setTarjetNumber($tarjet_number);
+                $employee->setDate($row[3]);
+                $employee->setRestrinction($row[4]);
+                return $employee;
+            } else {
+                $query = mysqli_query($this->db, "SELECT * FROM employee WHERE tarjet_number='$tarjet_number' ");
+
+                $row = $query->fetch_array();
+                if ($query != null && $row['4'] == $tarjet_number) {
+
+                    date_default_timezone_set('America/Mexico_city');
+                    $timestamp = time();
+                    $date_time = date("Y-m-d", $timestamp);
+
+                    $employee = new EmployeeRestrinction();
+                    $employee->setName($row[1]);
+                    $employee->setLastName($row[2]);
+                    $employee->setTarjetNumber($tarjet_number);
+                    $employee->setDate($date_time);
+                    $employee->setRestrinction(false);
+                    return $employee;
+                } else {
+                    return null;
+                }
+            }
+        } else {
+            return null;
+        }
+    }
+    public function updateEmployeeRestriction($tarjet_number,$flag){
+        $_query="UPDATE restriction_food SET restriction=%g WHERE tarjet_number='$tarjet_number' AND _date=curdate()";
+        $_query= sprintf($_query,$flag);
+        $query = mysqli_query($this->db,$_query );
+
+        if ($query) return true;
+        else return false;
+    }
+    public function setEmployeeRestriction($tarjet_number, $name, $lastName, $date, $restriction)
+    {
+        $query = mysqli_query($this->db, "INSERT INTO restriction_food VALUES('$tarjet_number','$name','$lastName','$date','$restriction')");
+
+        if ($query) return true;
+        else return false;
     }
 }
 class Connect_to_database
