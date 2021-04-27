@@ -27,7 +27,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet"/>
-
+    
     <link href="../../css/styles.css" rel="stylesheet" type="text/css" />
     <title>Panel de administración</title>
 
@@ -320,8 +320,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
                                             </tbody>
                                             <td colspan="9">
-                                                <a id ="linkReport" onclick="downloadReport()" href="#">Descargar</a>
-                                                
+                                                <a id ="linkReport" class="btn btn-primary" onclick="downloadReport()" href="#">Descargar</a>
                                             </td>
                                         </table>
                                         <div class="form-group">
