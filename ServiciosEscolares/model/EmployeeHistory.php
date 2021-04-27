@@ -1,11 +1,11 @@
 <?php
 class EmployeeHistory extends Employee
 {
-    private $inJob;
-    private $outEat;
-    private $outJob;
-    private $backJob;
-    private $date;
+    public $inJob;
+    public $outEat;
+    public $outJob;
+    public $backJob;
+    public $date;
 
     public function __construct()
     {

@@ -5,7 +5,7 @@ $jsonObject=json_decode($json);
 $conn= new Connection();
 $names=explode(' ',$jsonObject->name);
 if(!$jsonObject->restriction){
-    if($conn->updateEmployeeRestriction($jsonObject->tarjetNumber,$jsonObject->restriction)){
+    if($conn->deleteEmployeeRestriction($jsonObject->tarjetNumber)){
         http_response_code(201);
         print_r(json_encode(array(
             'status'=>201,

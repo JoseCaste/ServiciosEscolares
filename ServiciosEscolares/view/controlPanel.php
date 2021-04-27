@@ -24,6 +24,10 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <link rel="stylesheet" href="../../assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet"/>
+
     <link href="../../css/styles.css" rel="stylesheet" type="text/css" />
     <title>Panel de administración</title>
 
@@ -277,6 +281,26 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                         <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" style="width: 100%;">
                             <div class="card">
                                 <h5 class="card-header">Historial de empleado</h5>
+                                <div class="card-header row no-gutters align-items-center">
+                                    <div class="col-auto pr-sm-3">
+                                        <i class="fas fa-search h4 text-body "></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col pr-sm-3">
+                                    <input class="form-control form-control-lg form-control-borderless" id="filter_tarjetNumber" placeholder="Número de tarjeta" type="text"/>
+                                    </div>
+                                    <div class="col pr-sm-3">
+                                    <input class="form-control form-control-lg form-control-borderless" id="date" name="date" placeholder="Fecha de inicio" type="text"/>
+                                    </div>
+                                    <div class="col pr-sm-3">
+                                    <input class="form-control form-control-lg form-control-borderless" id="dateEnd" name="date" placeholder="Fecha de término" type="text"/>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button id="generateReport" class="btn btn-success" type="button" onclick="generateReport()">Buscar</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
                                         <table class="table">
@@ -295,7 +319,14 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                             <tbody id="historyTable-tbody">
 
                                             </tbody>
+                                            <td colspan="9">
+                                                <a id ="linkReport" onclick="downloadReport()" href="#">Descargar</a>
+                                                
+                                            </td>
                                         </table>
+                                        <div class="form-group">
+                                         <span href='#' id="error_messageReport" class='text-center new-account' style='color:red'></span>
+                                         </div>
                                     </div>
                                 </div>
                             </div>
@@ -343,7 +374,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
                                             </tbody>
                                             <td colspan="9">
-                                                    <span href='#' id="error_restriction" class='text-center new-account' style='color:red'></span>
+                                                <span href='#' id="error_restriction" class='text-center new-account' style='color:red'></span>
                                             </td>
                                         </table>
                                     </div>
@@ -408,6 +439,8 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <script src="../../assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
     <script>
         function checkField(params) {
             const json = {
@@ -435,32 +468,32 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
         }
 
         function setRestrinction() {
-           
-            var restrictionTarjetNumber= $("#restrictionTarjetNumber").text();
-            var restrictionName= $("#restrictionName").text();
-            var restrictionDate= $("#restrictionDate").text();
-            var restrictionCheckBox= $("#restrictionCheckBox").text();
-            restrictionCheckBox=$('#restrictionCheckBox').is(":checked");
-            const json={
+
+            var restrictionTarjetNumber = $("#restrictionTarjetNumber").text();
+            var restrictionName = $("#restrictionName").text();
+            var restrictionDate = $("#restrictionDate").text();
+            var restrictionCheckBox = $("#restrictionCheckBox").text();
+            restrictionCheckBox = $('#restrictionCheckBox').is(":checked");
+            const json = {
                 tarjetNumber: restrictionTarjetNumber,
                 name: restrictionName,
                 date: restrictionDate,
                 restriction: restrictionCheckBox
             }
             $.ajax({
-                    contentType: "application/json",
-                    dataType: "json",
-                    type: "POST",
-                    url: "../controller/addRestrinctionFoodEmployee.php",
-                    data: JSON.stringify(json),
-                    success: function(response) {
-                        console.log(response);
-                    },
-                    error: function(error) {
-                        console.log(error)
-                        $("#error_restriction").text(error.responseJSON.message);
-                    }
-                });
+                contentType: "application/json",
+                dataType: "json",
+                type: "POST",
+                url: "../controller/addRestrinctionFoodEmployee.php",
+                data: JSON.stringify(json),
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error)
+                    $("#error_restriction").text(error.responseJSON.message);
+                }
+            });
         }
 
         function searchEmployee(e) {
@@ -477,7 +510,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 success: function(response) {
                     console.log(response);
                     var restrictionTable_tbody = document.querySelector("#restrictionTable-tbody");
-                    restrictionTable_tbody .innerHTML="";
+                    restrictionTable_tbody.innerHTML = "";
                     var checkBox;
                     if (response.restriction == "0") {
                         checkBox = `<input id="restrictionCheckBox" class="text-center" type="checkbox" onclick="setRestrinction()">`;
@@ -499,6 +532,93 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 }
 
             });
+        }
+        function generateReport() {
+            const filter_tarjetNumber=document.querySelector('#filter_tarjetNumber').value;
+            const dateInit=document.querySelector('#date').value;
+            const dateEnd=document.querySelector('#dateEnd').value;
+            const json={
+                tarjetNumber: filter_tarjetNumber,
+                init: dateInit,
+                end: dateEnd
+            };
+            $.ajax({
+                    contentType: "application/json",
+                    dataType: "json",
+                    type: "POST",
+                    url: "../controller/generateReport.php",
+                    data: JSON.stringify(json),
+                    success: function(response) {
+                        $("#error_messageReport").text("");
+                        addDataHistoryTable(response.message);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        $("#error_messageReport").text(error.responseJSON.message);
+                    }
+                });
+
+        }
+        function downloadReport() {
+            const filter_tarjetNumber=document.querySelector('#filter_tarjetNumber').value;
+            const dateInit=document.querySelector('#date').value;
+            const dateEnd=document.querySelector('#dateEnd').value;
+            const json={
+                tarjetNumber: filter_tarjetNumber,
+                init: dateInit,
+                end: dateEnd
+            };
+            $.ajax({
+                    contentType: "application/json",
+                    dataType: "json",
+                    type: "POST",
+                    url: "../controller/downloadReport.php",
+                    data: JSON.stringify(json),
+                    success: function(response) {
+                        $("#error_messageReport").text("");    
+                    var hiddenElement = document.createElement('a');  
+                    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(response.message);  
+                    hiddenElement.target = '_blank';  
+                    hiddenElement.download = 'Reporte.csv';  
+                    hiddenElement.click();  
+                        
+                    },
+                    error: function(error) {
+                        console.log("error",error);
+                        $("#error_messageReport").text(error.responseJSON.message);
+                    }
+                });
+        }
+        function addDataHistoryTable(json) {
+            var tbody = document.querySelector("#historyTable-tbody");
+                    tbody.innerHTML = "";
+                    for (let aux of json) {
+                        tbody.innerHTML += `
+                            <tr><td>${aux.tarjet_number}</td>
+                            <td>
+                                ${aux.name} ${aux.lastName}
+                            </td>
+                           <td>
+                                ${aux.mail}
+                            </td>
+                            <td>
+                                ${aux.InJob}
+                            </td>
+                            <td>
+                                ${aux.OutEat}
+                            </td>
+                            <td>
+                                ${aux.BackEat}
+                            </td>
+                            <td>
+                                ${aux.OutJob}
+                            </td>
+                            <td>
+                                ${aux.Date}
+                            </td>
+                            </tr>
+                        `;
+                    }
         }
         $(document).ready(function() {
             $("#historyTable").hide();
@@ -552,37 +672,20 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 $.get("../controller/employeesHistory.php", function(data) {
 
                     const json = JSON.parse(data);
-                    var tbody = document.querySelector("#historyTable-tbody");
-                    tbody.innerHTML = "";
-                    for (let aux of json) {
-                        tbody.innerHTML += `
-                            <tr><td>${aux.tarjet_number}</td>
-                            <td>
-                                ${aux.name} ${aux.lastName}
-                            </td>
-                           <td>
-                                ${aux.mail}
-                            </td>
-                            <td>
-                                ${aux.InJob}
-                            </td>
-                            <td>
-                                ${aux.OutEat}
-                            </td>
-                            <td>
-                                ${aux.BackEat}
-                            </td>
-                            <td>
-                                ${aux.OutJob}
-                            </td>
-                            <td>
-                                ${aux.Date}
-                            </td>
-                            </tr>
-                        `;
-                    }
+                    addDataHistoryTable(json);
                 });
-            })
+            });
+            $('#date').datepicker({
+	            format: 'yyyy-mm-dd',
+                multidate:true,
+
+            });
+            $('#dateEnd').datepicker({
+	            format: 'yyyy-mm-dd',
+                multidate:true,
+
+            });
+            
         });
     </script>
 </body>

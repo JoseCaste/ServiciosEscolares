@@ -122,7 +122,7 @@ class Connection
     }
     public function insertOutJob($tarjet_number,$date_time){
         $id=$this->getSpecificEmployee($tarjet_number);
-        $query=mysqli_query($this->db,"INSERT INTO IO_employee (employee_id , out_job,_date) values ($id,'$date_time',curdate())");
+        $query=mysqli_query($this->db,"UPDATE IO_employee SET out_job='$date_time' where employee_id='$id'and _date=curdate()");
         if($query){
             return true;
         }else return false;
@@ -140,7 +140,11 @@ class Connection
             $employee->setName($row[1]);
             $employee->setLastName($row[2]);
             $employee->setMail($row[3]);
-            $employee->setInJob($row[4]);
+
+            if($row[4]!=null){
+                $employee->setInJob($row[4]);
+            }else $employee->setInJob("Sin registro");
+            
 
             if ($row[5] != null) {
                 $employee->setOutEat($row[5]);
@@ -161,6 +165,85 @@ class Connection
             array_push($history_array, $employee);
         }
         return $history_array;
+    }
+    public function getEmployeeReport($dateInit, $dateEnd){
+        $employee_array= array();
+       if($dateEnd!=null){
+           $query=mysqli_query($this->db,"SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and io_._date>='$dateInit' and io_._date<='$dateEnd'");
+       }else{
+        $query=mysqli_query($this->db,"SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and io_._date='$dateInit'");
+       }
+       while ($row = $query->fetch_array()) {
+        $employee = new EmployeeHistory();
+            $employee->setTarjetNumber($row[0]);
+            $employee->setName($row[1]);
+            $employee->setLastName($row[2]);
+            $employee->setMail($row[3]);
+
+            if($row[4]!=null){
+                $employee->setInJob($row[4]);
+            }else $employee->setInJob("Sin registro");
+            
+
+            if ($row[5] != null) {
+                $employee->setOutEat($row[5]);
+            } else {
+                $employee->setOutEat("Sin registro");
+            }
+            if ($row[6] != null) {
+                $employee->setBackEat($row[6]);
+            } else {
+                $employee->setBackEat("Sin registro");
+            }
+            if ($row[7] != null) {
+                $employee->setoutJob($row[7]);
+            } else {
+                $employee->setOutJob("Sin registro");
+            }
+            $employee->setDate($row[8]);
+        array_push($employee_array, $employee);
+    }
+    return $employee_array;
+    }
+
+    public function getEmployeeReportWithTarjetNumber($tarjet_number,$dateInit, $dateEnd){
+        $employee_array= array();
+       if($dateEnd!=null){
+           $query=mysqli_query($this->db,"SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and e.tarjet_number='$tarjet_number' and io_._date>='$dateInit' and io_._date<='$dateEnd'");
+       }else{
+           $query=mysqli_query($this->db,"SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and e.tarjet_number='$tarjet_number' and io_._date='$dateInit'");
+       }
+       while ($row = $query->fetch_array()) {
+        $employee = new EmployeeHistory();
+            $employee->setTarjetNumber($row[0]);
+            $employee->setName($row[1]);
+            $employee->setLastName($row[2]);
+            $employee->setMail($row[3]);
+
+            if($row[4]!=null){
+                $employee->setInJob($row[4]);
+            }else $employee->setInJob("Sin registro");
+            
+
+            if ($row[5] != null) {
+                $employee->setOutEat($row[5]);
+            } else {
+                $employee->setOutEat("Sin registro");
+            }
+            if ($row[6] != null) {
+                $employee->setBackEat($row[6]);
+            } else {
+                $employee->setBackEat("Sin registro");
+            }
+            if ($row[7] != null) {
+                $employee->setoutJob($row[7]);
+            } else {
+                $employee->setOutJob("Sin registro");
+            }
+            $employee->setDate($row[8]);
+        array_push($employee_array, $employee);
+    }
+    return $employee_array;
     }
     public function employeeRestriction($tarjet_number){
         $query = mysqli_query($this->db, "SELECT * FROM restriction_food WHERE tarjet_number='$tarjet_number' AND _date=curdate()");
@@ -219,6 +302,13 @@ class Connection
     public function updateEmployeeRestriction($tarjet_number,$flag){
         $_query="UPDATE restriction_food SET restriction=%g WHERE tarjet_number='$tarjet_number' AND _date=curdate()";
         $_query= sprintf($_query,$flag);
+        $query = mysqli_query($this->db,$_query );
+
+        if ($query) return true;
+        else return false;
+    }
+    public function deleteEmployeeRestriction($tarjet_number){
+        $_query="DELETE FROM restriction_food WHERE tarjet_number='$tarjet_number' AND _date=curdate()";
         $query = mysqli_query($this->db,$_query );
 
         if ($query) return true;
