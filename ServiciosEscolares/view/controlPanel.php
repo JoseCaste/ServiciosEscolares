@@ -26,8 +26,8 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet"/>
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet" />
+
     <link href="../../css/styles.css" rel="stylesheet" type="text/css" />
     <title>Panel de administración</title>
 
@@ -287,13 +287,13 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                     </div>
                                     <!--end of col-->
                                     <div class="col pr-sm-3">
-                                    <input class="form-control form-control-lg form-control-borderless" id="filter_tarjetNumber" placeholder="Número de tarjeta" type="text"/>
+                                        <input class="form-control form-control-lg form-control-borderless" id="filter_tarjetNumber" placeholder="Número de tarjeta" type="text" />
                                     </div>
                                     <div class="col pr-sm-3">
-                                    <input class="form-control form-control-lg form-control-borderless" id="date" name="date" placeholder="Fecha de inicio" type="text"/>
+                                        <input class="form-control form-control-lg form-control-borderless" id="date" name="date" placeholder="Fecha de inicio" type="text" />
                                     </div>
                                     <div class="col pr-sm-3">
-                                    <input class="form-control form-control-lg form-control-borderless" id="dateEnd" name="date" placeholder="Fecha de término" type="text"/>
+                                        <input class="form-control form-control-lg form-control-borderless" id="dateEnd" name="date" placeholder="Fecha de término" type="text" />
                                     </div>
                                     <!--end of col-->
                                     <div class="col-auto">
@@ -320,12 +320,16 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
                                             </tbody>
                                             <td colspan="9">
-                                                <a id ="linkReport" class="btn btn-primary" onclick="downloadReport()" href="#">Descargar</a>
+                                                <div class="container bg-light">
+                                                    <div class="col-md-12 text-center">
+                                                        <a id="linkReport" class="btn btn-primary" onclick="downloadReport()" href="#">Descargar</a>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </table>
                                         <div class="form-group">
-                                         <span href='#' id="error_messageReport" class='text-center new-account' style='color:red'></span>
-                                         </div>
+                                            <span href='#' id="error_messageReport" class='text-center new-account' style='color:red'></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -532,67 +536,70 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
             });
         }
+
         function generateReport() {
-            const filter_tarjetNumber=document.querySelector('#filter_tarjetNumber').value;
-            const dateInit=document.querySelector('#date').value;
-            const dateEnd=document.querySelector('#dateEnd').value;
-            const json={
+            const filter_tarjetNumber = document.querySelector('#filter_tarjetNumber').value;
+            const dateInit = document.querySelector('#date').value;
+            const dateEnd = document.querySelector('#dateEnd').value;
+            const json = {
                 tarjetNumber: filter_tarjetNumber,
                 init: dateInit,
                 end: dateEnd
             };
             $.ajax({
-                    contentType: "application/json",
-                    dataType: "json",
-                    type: "POST",
-                    url: "../controller/generateReport.php",
-                    data: JSON.stringify(json),
-                    success: function(response) {
-                        $("#error_messageReport").text("");
-                        addDataHistoryTable(response.message);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                        $("#error_messageReport").text(error.responseJSON.message);
-                    }
-                });
+                contentType: "application/json",
+                dataType: "json",
+                type: "POST",
+                url: "../controller/generateReport.php",
+                data: JSON.stringify(json),
+                success: function(response) {
+                    $("#error_messageReport").text("");
+                    addDataHistoryTable(response.message);
+                },
+                error: function(error) {
+                    console.log(error);
+                    $("#error_messageReport").text(error.responseJSON.message);
+                }
+            });
 
         }
+
         function downloadReport() {
-            const filter_tarjetNumber=document.querySelector('#filter_tarjetNumber').value;
-            const dateInit=document.querySelector('#date').value;
-            const dateEnd=document.querySelector('#dateEnd').value;
-            const json={
+            const filter_tarjetNumber = document.querySelector('#filter_tarjetNumber').value;
+            const dateInit = document.querySelector('#date').value;
+            const dateEnd = document.querySelector('#dateEnd').value;
+            const json = {
                 tarjetNumber: filter_tarjetNumber,
                 init: dateInit,
                 end: dateEnd
             };
             $.ajax({
-                    contentType: "application/json",
-                    dataType: "json",
-                    type: "POST",
-                    url: "../controller/downloadReport.php",
-                    data: JSON.stringify(json),
-                    success: function(response) {
-                    $("#error_messageReport").text("");    
-                    var hiddenElement = document.createElement('a');  
-                    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(response.message);  
-                    hiddenElement.target = '_blank';  
-                    hiddenElement.download = 'Reporte.csv';  
-                    hiddenElement.click();  
-                        
-                    },
-                    error: function(error) {
-                        console.log("error",error);
-                        $("#error_messageReport").text(error.responseJSON.message);
-                    }
-                });
+                contentType: "application/json",
+                dataType: "json",
+                type: "POST",
+                url: "../controller/downloadReport.php",
+                data: JSON.stringify(json),
+                success: function(response) {
+                    $("#error_messageReport").text("");
+                    var hiddenElement = document.createElement('a');
+                    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(response.message);
+                    hiddenElement.target = '_blank';
+                    hiddenElement.download = 'Reporte.csv';
+                    hiddenElement.click();
+
+                },
+                error: function(error) {
+                    console.log("error", error);
+                    $("#error_messageReport").text(error.responseJSON.message);
+                }
+            });
         }
+
         function addDataHistoryTable(json) {
             var tbody = document.querySelector("#historyTable-tbody");
-                    tbody.innerHTML = "";
-                    for (let aux of json) {
-                        tbody.innerHTML += `
+            tbody.innerHTML = "";
+            for (let aux of json) {
+                tbody.innerHTML += `
                             <tr><td>${aux.tarjet_number}</td>
                             <td>
                                 ${aux.name} ${aux.lastName}
@@ -617,7 +624,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                             </td>
                             </tr>
                         `;
-                    }
+            }
         }
         $(document).ready(function() {
             $("#historyTable").hide();
@@ -675,16 +682,16 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 });
             });
             $('#date').datepicker({
-	            format: 'yyyy-mm-dd',
-                multidate:true,
+                format: 'yyyy-mm-dd',
+                multidate: true,
 
             });
             $('#dateEnd').datepicker({
-	            format: 'yyyy-mm-dd',
-                multidate:true,
+                format: 'yyyy-mm-dd',
+                multidate: true,
 
             });
-            
+
         });
     </script>
 </body>
