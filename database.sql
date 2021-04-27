@@ -5,7 +5,7 @@ use control_escolar;
 
 
 #step 1
-create table user_administrator (id mediumint auto_increment, username text,password varchar(10), name text, lastname text,
+create table user_administrator (id mediumint auto_increment, username text,password varchar(200), name text, lastname text,
 primary key(id));
 
 #step 2
@@ -41,14 +41,7 @@ select * from user_administrator;
 create table IO_employee (id_IO mediumint auto_increment, employee_id mediumint, in_job time,out_eat time,back_eat time, out_job time,_date date,
 primary key(id_IO), foreign key(employee_id)references employee(id_employee));
 
-select * from IO_employee;
 
 /*creating a restriction_food*/
 create table restriction_food(tarjet_number varchar(10), name text, lastname text, _date date, restriction boolean);
 ALTER TABLE restriction_food ADD PRIMARY KEY(tarjet_number, _date);
-select * from restriction_food order by(_date);
-SELECT * FROM restriction_food WHERE tarjet_number='00008' AND _date=curdate();
-
-insert into restriction_food values('00008','Juan','Castellanos', curdate(),true);
-UPDATE restriction_food SET restriction=false WHERE tarjet_number='00007' AND _date=curdate();
-UPDATE restriction_food SET restriction=false WHERE tarjet_number='00007' AND _date=curdate();

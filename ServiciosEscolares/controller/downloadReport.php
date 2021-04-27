@@ -5,8 +5,10 @@ $json = file_get_contents("php://input");
 $jsonObject = json_decode($json);
 if ($jsonObject->tarjetNumber != null) {
     $array = $conn->getEmployeeReportWithTarjetNumber($jsonObject->tarjetNumber, $jsonObject->init, $jsonObject->end);
-} else {
+} else if($jsonObject->init !=null){
     $array = $conn->getEmployeeReport($jsonObject->init, $jsonObject->end);
+}else{
+    $array = $conn->employeesHistory();
 }
 if ($array != null) {
     

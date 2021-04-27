@@ -575,7 +575,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                     url: "../controller/downloadReport.php",
                     data: JSON.stringify(json),
                     success: function(response) {
-                        $("#error_messageReport").text("");    
+                    $("#error_messageReport").text("");    
                     var hiddenElement = document.createElement('a');  
                     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(response.message);  
                     hiddenElement.target = '_blank';  
