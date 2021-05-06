@@ -278,7 +278,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
                         <!-- recent orders  -->
                         <!-- ============================================================== -->
-                        <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" style="width: 100%;">
+                        <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12" style="width: 100%;">
                             <div class="card">
                                 <h5 class="card-header">Historial de empleado</h5>
                                 <div class="card-header row no-gutters align-items-center">
@@ -314,6 +314,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                     <th class="border-0">Regreso</th>
                                                     <th class="border-0">Salida</th>
                                                     <th class="border-0">Fecha</th>
+                                                    <th class="border-0" >Comentarios</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="historyTable-tbody">
@@ -622,6 +623,9 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                             <td>
                                 ${aux.Date}
                             </td>
+                            <td>
+                                ${aux.comments}
+                            </td
                             </tr>
                         `;
             }
@@ -678,6 +682,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 $.get("../controller/employeesHistory.php", function(data) {
 
                     const json = JSON.parse(data);
+                    console.log(JSON.parse(data));
                     addDataHistoryTable(json);
                 });
             });

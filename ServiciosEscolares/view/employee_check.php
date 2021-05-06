@@ -40,6 +40,10 @@
                             <!-- Trigger the modal with a button -->
                             <span class='text-center new-account' id="message"></span>
                         </div>
+                        <div class="form-group">
+                            <!-- Trigger the modal with a button -->
+                            <span class='text-center new-account' id="messageSalary"></span>
+                        </div>
 
                         <!-- Modal -->
                     </form>
@@ -71,6 +75,7 @@
 
             $("#formRegister").submit(function(e) {
                 e.preventDefault();
+                $("#message").text("");
                 const tarjet_numer = $("#tarjet_number").val();
                 const json = {
                     "tarjet_number": tarjet_numer,
@@ -83,9 +88,15 @@
                     url: "../controller/employee_checkController.php",
                     data: JSON.stringify(json),
                     success: function(response) {
+                        console.log(response);
                         $("#message").css("color", "blue");
                         $("#message").text(response.message);
-
+                        if(response.salaryDecrement !=null){
+                            $("#messageSalary").css("color", "red");
+                            $("#messageSalary").text(response.salaryDecrement);
+                        }else{
+                            $("#messageSalary").text("");
+                        }
                     },
                     error: function(error) {
                         console.log(error.responseJSON);
@@ -99,10 +110,9 @@
                                 success: function(response) {
                                     $("#message").css("color", "blue");
                                     $("#message").text(response.message);
-
+                                    $("#messageSalary").text("");
                                 },
                                 error: function(error) {
-                                    console.log(error.responseJSON);
                                     if (confirm(error.responseJSON.message)) {
 
                                     }

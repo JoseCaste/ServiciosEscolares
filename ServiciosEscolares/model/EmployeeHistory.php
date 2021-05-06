@@ -5,6 +5,7 @@ class EmployeeHistory extends Employee
     public $outEat;
     public $outJob;
     public $backJob;
+    public $comments;
     public $date;
 
     public function __construct()
@@ -84,6 +85,12 @@ class EmployeeHistory extends Employee
         $this->tarjet_number = $tarjet_numbel;
     }
 
+    public function setComments($comments){
+        $this->comments=$comments;
+    }
+    public function getComments(){
+        return $this->comments;
+    }
     public function setDate($date)
     {
         $this->Date=$date;

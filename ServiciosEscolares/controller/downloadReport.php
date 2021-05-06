@@ -4,14 +4,18 @@ $conn = new Connection();
 $json = file_get_contents("php://input");
 $jsonObject = json_decode($json);
 if ($jsonObject->tarjetNumber != null) {
-    $array = $conn->getEmployeeReportWithTarjetNumber($jsonObject->tarjetNumber, $jsonObject->init, $jsonObject->end);
-} else if($jsonObject->init !=null){
+    if ($jsonObject->init == null && $jsonObject->end == null) {
+        $array = $conn->getAllEmployeeReport($jsonObject->tarjetNumber);
+    } else {
+        $array = $conn->getEmployeeReportWithTarjetNumber($jsonObject->tarjetNumber, $jsonObject->init, $jsonObject->end);
+    }
+} else if ($jsonObject->init != null) {
     $array = $conn->getEmployeeReport($jsonObject->init, $jsonObject->end);
-}else{
+} else {
     $array = $conn->employeesHistory();
 }
 if ($array != null) {
-    
+
     $fiveMBs = 5 * 1024 * 1024;
     $fp = fopen("php://temp/maxmemory:$fiveMBs", 'r+');
     fputcsv($fp, array("Tarjeta", "Nombre", "Correo", "Entrada", "Comida", "Regreso", "Salida", "Fecha"));
@@ -30,12 +34,12 @@ if ($array != null) {
         fputcsv($fp, $fields);
     }
     rewind($fp);
-http_response_code(200);
-print_r(json_encode(array(
-    'status'=>200,
-    "message"=> stream_get_contents($fp)
-)));
-}else{
+    http_response_code(200);
+    print_r(json_encode(array(
+        'status' => 200,
+        "message" => stream_get_contents($fp)
+    )));
+} else {
     http_response_code(404);
     print_r(json_encode(array(
         'status' => 404,

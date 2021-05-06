@@ -41,7 +41,14 @@ select * from user_administrator;
 create table IO_employee (id_IO mediumint auto_increment, employee_id mediumint, in_job time,out_eat time,back_eat time, out_job time,_date date,
 primary key(id_IO), foreign key(employee_id)references employee(id_employee));
 
-
 /*creating a restriction_food*/
 create table restriction_food(tarjet_number varchar(10), name text, lastname text, _date date, restriction boolean);
 ALTER TABLE restriction_food ADD PRIMARY KEY(tarjet_number, _date);
+select * from IO_employee where out_job is not null;
+alter table IO_employee add column comments text;
+SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date, io_.comments FROM IO_employee io_ CROSS JOIN employee e WHERE e.tarjet_number = '00005';
+SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date, io_.comments FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and io_.out_job is null and io_._date!=curdate();
+SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date, io_.comments FROM IO_employee io_ CROSS JOIN employee e WHERE e.tarjet_number = '00008' and io_.out_job is null;
+update io_employee set out_job= null, comments=null where  employee_id=8 and _date='2021-04-19';
+SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date, io_.comments FROM IO_employee io_ CROSS JOIN employee e WHERE e.tarjet_number = '00006' and io_.out_job is null and io_._date!=curdate();
+SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id;

@@ -13,10 +13,12 @@ $date_time = date("H:i:s", $timestamp); //this time is when user puts her/his ta
 if($conn->employeeRestriction($tarjet_number->tarjet_number)){
 
     if($conn->getInJob($tarjet_number->tarjet_number,$date_time)){
+        $salaryDecrementMessage=$conn->getEmployeedNotChecked($tarjet_number->tarjet_number);//this function is to check if a user has not checked any out job in his history
         http_response_code(200);
         print_r(json_encode(array(
             'status'=>200,
-            "message"=> "Entrada registrada"
+            "message"=> "Entrada registrada",
+            "salaryDecrement"=> $salaryDecrementMessage
         )));
     }else{
         http_response_code(409);
@@ -29,10 +31,13 @@ if($conn->employeeRestriction($tarjet_number->tarjet_number)){
 }else{
     $message=$conn->setIOEmployee($tarjet_number->tarjet_number,$date_time);
     if($message!=null){
+        $salaryDecrementMessage=$conn->getEmployeedNotChecked($tarjet_number->tarjet_number);//this function is to check if a user has not checked any out job in his history
+
         http_response_code(200);
         print_r(json_encode(array(
             'status'=>200,
-            "message"=> $message
+            "message"=> $message,
+            "salaryDecrement"=> $salaryDecrementMessage
         )));
     }else{
         http_response_code(400);

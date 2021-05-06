@@ -4,7 +4,11 @@ $json = file_get_contents("php://input");
 $jsonObject = json_decode($json);
 $conn = new Connection();
 if ($jsonObject->tarjetNumber != null) {
-    $array = $conn->getEmployeeReportWithTarjetNumber($jsonObject->tarjetNumber, $jsonObject->init, $jsonObject->end);
+    if($jsonObject->init ==null && $jsonObject->end ==null){
+        $array=$conn->getAllEmployeeReport($jsonObject->tarjetNumber);
+    }else{
+        $array = $conn->getEmployeeReportWithTarjetNumber($jsonObject->tarjetNumber, $jsonObject->init, $jsonObject->end);
+    }
 } else if($jsonObject->init !=null){
     $array = $conn->getEmployeeReport($jsonObject->init, $jsonObject->end);
 }else{
