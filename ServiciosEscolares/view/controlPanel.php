@@ -583,9 +583,9 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 success: function(response) {
                     $("#error_messageReport").text("");
                     var hiddenElement = document.createElement('a');
-                    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(response.message);
+                    hiddenElement.href= response.message
                     hiddenElement.target = '_blank';
-                    hiddenElement.download = 'Reporte.csv';
+                    hiddenElement.download = 'Reporte.xls';
                     hiddenElement.click();
 
                 },
@@ -682,7 +682,6 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 $.get("../controller/employeesHistory.php", function(data) {
 
                     const json = JSON.parse(data);
-                    console.log(JSON.parse(data));
                     addDataHistoryTable(json);
                 });
             });

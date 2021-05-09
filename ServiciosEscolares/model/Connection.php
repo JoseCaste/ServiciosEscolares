@@ -191,7 +191,8 @@ class Connection
     public function getAllEmployeeReport($tarjet_number)
     {
         $history_array = array();
-        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.tarjet_number = '$tarjet_number'");
+        $id=$this->getSpecificEmployee($tarjet_number);
+        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE io_.employee_id = e.id_employee and io_.employee_id='$id'");
 
 
         while ($row = $query->fetch_array()) {

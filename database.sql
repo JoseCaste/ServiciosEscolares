@@ -52,3 +52,8 @@ SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_
 update io_employee set out_job= null, comments=null where  employee_id=8 and _date='2021-04-19';
 SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_._date, io_.comments FROM IO_employee io_ CROSS JOIN employee e WHERE e.tarjet_number = '00006' and io_.out_job is null and io_._date!=curdate();
 SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id;
+select * from employee;
+select * from IO_employee;
+select * from IO_employee where employee_id= 1;
+SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and e.tarjet_number='00002' and io_._date>='2021-04-02' and io_._date<='2021-05-12';
+SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE io_.employee_id = e.id_employee and io_.employee_id= 1;
