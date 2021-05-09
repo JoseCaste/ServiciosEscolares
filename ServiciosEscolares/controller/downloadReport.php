@@ -18,43 +18,49 @@ $objPHPExcel->getProperties()
 
 $json = file_get_contents("php://input");
 $jsonObject = json_decode($json);
-$array=report($jsonObject);
+$array = report($jsonObject);
 if ($array != null) {
-
-    $fiveMBs = 5 * 1024 * 1024;
-    $fp = fopen("php://temp/maxmemory:$fiveMBs", 'r+');
-    fputcsv($fp, array("Tarjeta", "Nombre", "Correo", "Entrada", "Comida", "Regreso", "Salida", "Fecha"));
     $row = 3;
     foreach ($array as $value) {
-    $objPHPExcel->setActiveSheetIndex(0)
-        ->setCellValue("A$row", $value->getTarjetNumber())
-        ->setCellValue("B$row", $value->getName() . " " . $value->getLastName())
-        ->setCellValue("C$row", $value->mail)
-        ->setCellValue("D$row", $value->InJob)
-        ->setCellValue("E$row",  $value->OutEat)
-        ->setCellValue("F$row", $value->BackEat)
-        ->setCellValue("G$row", $value->OutJob)
-        ->setCellValue("H$row", $value->Date)
-        ->setCellValue("I$row", $value->comments);
+        $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue("A$row", $value->getTarjetNumber())
+            ->setCellValue("B$row", $value->getName() . " " . $value->getLastName())
+            ->setCellValue("C$row", $value->mail)
+            ->setCellValue("D$row", $value->InJob)
+            ->setCellValue("E$row",  $value->OutEat)
+            ->setCellValue("F$row", $value->BackEat)
+            ->setCellValue("G$row", $value->OutJob)
+            ->setCellValue("H$row", $value->Date)
+            ->setCellValue("I$row", $value->comments);
         $objPHPExcel->getActiveSheet()->getRowDimension($row)->setRowHeight(-1);
-    $row++;
-        //fputcsv($fp, $fields);
+        $row++;
     }
     $objPHPExcel->getActiveSheet()->setTitle('Usuarios');
-$objPHPExcel->setActiveSheetIndex(0);
+    $objPHPExcel->setActiveSheetIndex(0);
+    foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
 
-header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="reporte.xls"');
-header('Cache-Control: max-age=0');
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-ob_start();
-$objWriter->save('php://output');
-$xlsData=ob_get_contents();
-ob_end_clean();
+        $objPHPExcel->setActiveSheetIndex($objPHPExcel->getIndex($worksheet));
+    
+        $sheet = $objPHPExcel->getActiveSheet();
+        $cellIterator = $sheet->getRowIterator()->current()->getCellIterator();
+        $cellIterator->setIterateOnlyExistingCells(true);
+        /** @var PHPExcel_Cell $cell */
+        foreach ($cellIterator as $cell) {
+            $sheet->getColumnDimension($cell->getColumn())->setAutoSize(true);
+        }
+    }
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="reporte.xls"');
+    header('Cache-Control: max-age=0');
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+    ob_start();
+    $objWriter->save('php://output');
+    $xlsData = ob_get_contents();
+    ob_end_clean();
     http_response_code(200);
     print_r(json_encode(array(
         'status' => 200,
-        "message" => "data:xls;base64,".base64_encode($xlsData)
+        "message" => "data:xls;base64," . base64_encode($xlsData)
     )));
 } else {
     http_response_code(404);

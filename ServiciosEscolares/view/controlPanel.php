@@ -29,6 +29,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet" />
 
     <link href="../../css/styles.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="./logo_unam_.jpg">
     <title>Panel de administración</title>
 
 </head>
@@ -293,7 +294,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                         <input class="form-control form-control-lg form-control-borderless" id="date" name="date" placeholder="Fecha de inicio" type="text" />
                                     </div>
                                     <div class="col pr-sm-3">
-                                        <input class="form-control form-control-lg form-control-borderless" id="dateEnd" name="date" placeholder="Fecha de término" type="text" />
+                                        <input class="form-control form-control-lg form-control-borderless" id="dateEnd" name="date" placeholder="Fecha de término" type="text" onblur="checkDates(this)" />
                                     </div>
                                     <!--end of col-->
                                     <div class="col-auto">
@@ -470,6 +471,14 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 }
             });
         }
+        function checkDates(e) {
+            if(e.value == $("#date").val()){
+                document.querySelector("#generateReport").disabled=true;
+                confirm("Las fechas no deben coincidir");
+            }else{
+                document.querySelector("#generateReport").disabled=false;
+            }
+          }
 
         function setRestrinction() {
 
