@@ -235,7 +235,6 @@ class Connection
             $employee->setOutJob($row[7] != null ? $row[7] : "Sin registro");
             $employee->setComments($row[8] != null ? $row[8] : "S/C");
             $employee->setDate($row[9]);
-            $employee->setDate($row[8]);
             array_push($employee_array, $employee);
         }
         return $employee_array;

@@ -302,6 +302,8 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                     </div>
                                     <!--end of col-->
                                 </div>
+                                <span class="mx-auto"id="msgDate" style="color: red"></span>
+                                    
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
                                         <table class="table">
@@ -472,10 +474,11 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
             });
         }
         function checkDates(e) {
-            if(e.value == $("#date").val()){
+            if(e.value == $("#date").val() && e.value !="" && $("#date").val()!=null){
                 document.querySelector("#generateReport").disabled=true;
-                confirm("Las fechas no deben coincidir");
+                $("#msgDate").text("Las fechas no deben coincidir");
             }else{
+                $("#msgDate").text("");
                 document.querySelector("#generateReport").disabled=false;
             }
           }
@@ -563,11 +566,12 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 url: "../controller/generateReport.php",
                 data: JSON.stringify(json),
                 success: function(response) {
+                    console.log(response)
                     $("#error_messageReport").text("");
                     addDataHistoryTable(response.message);
                 },
                 error: function(error) {
-                    console.log(error);
+                    document.querySelector("#historyTable-tbody").innerHTML = "";
                     $("#error_messageReport").text(error.responseJSON.message);
                 }
             });
