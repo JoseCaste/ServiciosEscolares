@@ -46,3 +46,4 @@ create table restriction_food(tarjet_number varchar(10), name text, lastname tex
 ALTER TABLE restriction_food ADD PRIMARY KEY(tarjet_number, _date);
 /*adding a comments field*/
 alter table IO_employee add column comments text;
+select * from IO_employee;

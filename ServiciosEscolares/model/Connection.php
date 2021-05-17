@@ -143,7 +143,7 @@ class Connection
     public function employeesHistory()
     {
         $history_array = array();
-        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id");
+        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id order by io_._date");
 
 
         while ($row = $query->fetch_array()) {
@@ -167,9 +167,9 @@ class Connection
     {
         $employee_array = array();
         if ($dateEnd != null) {
-            $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and io_._date>='$dateInit' and io_._date<='$dateEnd'");
+            $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and io_._date>='$dateInit' and io_._date<='$dateEnd' order by io_._date");
         } else {
-            $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and io_._date='$dateInit'");
+            $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and io_._date='$dateInit' order by io_._date");
         }
         while ($row = $query->fetch_array()) {
             $employee = new EmployeeHistory();
@@ -192,7 +192,7 @@ class Connection
     {
         $history_array = array();
         $id=$this->getSpecificEmployee($tarjet_number);
-        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE io_.employee_id = e.id_employee and io_.employee_id='$id'");
+        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE io_.employee_id = e.id_employee and io_.employee_id='$id' order by io_._date");
 
 
         while ($row = $query->fetch_array()) {
@@ -218,9 +218,9 @@ class Connection
     {
         $employee_array = array();
         if ($dateEnd != null) {
-            $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and e.tarjet_number='$tarjet_number' and io_._date>='$dateInit' and io_._date<='$dateEnd'");
+            $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and e.tarjet_number='$tarjet_number' and io_._date>='$dateInit' and io_._date<='$dateEnd' order by io_._date");
         } else {
-            $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and e.tarjet_number='$tarjet_number' and io_._date='$dateInit'");
+            $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE e.id_employee = io_.employee_id and e.tarjet_number='$tarjet_number' and io_._date='$dateInit' order by io_._date");
         }
         while ($row = $query->fetch_array()) {
             $employee = new EmployeeHistory();
@@ -255,6 +255,35 @@ class Connection
                 return null;
             }
         } else return null;
+    }
+    public function getIncidents($tarjet_number){
+        $employee= new Employee();
+        $id=$this->getSpecificEmployee($tarjet_number);
+        $query = mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE io_.employee_id = e.id_employee and io_.employee_id='$id'");
+        if ($row = $query->fetch_array()) {
+            $employee->setTarjetNumber($row[0]);
+            $employee->setName($row[1]);
+            $employee->setLastName($row[2]);
+        }else $employee=null;
+
+        return $employee;
+    }
+    public function checkIncident($tarjet_number,$date){
+        $id=$this->getSpecificEmployee($tarjet_number);
+        $query=mysqli_query($this->db, "SELECT e.tarjet_number,e.name,e.lastname,e.mail,io_.in_job,io_.out_eat,io_.back_eat,io_.out_job,io_.comments,io_._date FROM IO_employee io_ CROSS JOIN employee e WHERE io_.employee_id = e.id_employee and io_.employee_id='$id' and _date='$date'");
+        if ($row = $query->fetch_array()) {
+        return true;
+        }else{
+            return false;
+        }
+    }
+    public function registerIncident($tarjet_number,$date){
+        $id=$this->getSpecificEmployee($tarjet_number);
+        $query= mysqli_query($this->db,"INSERT INTO IO_employee (employee_id,in_job,out_eat,back_eat,out_job,_date,comments) VALUES($id,'00:00:00','00:00:00','00:00:00','00:00:00','$date','Comisionado a otro campus')");
+        if($query)
+            return true;
+        else 
+            return false;
     }
     public function getEmployeeRestriction($tarjet_number)
     {

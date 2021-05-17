@@ -2,11 +2,12 @@
 session_start();
 require_once("../model/Connection.php");
 require_once("../../Classes/PHPExcel.php");
+require_once("../../Classes/PHPExcel/Writer/PDF.php");
 require_once("../../Classes/PHPExcel/IOFactory.php");
 require_once("./reportOperation.php");
+
 $objReader = PHPExcel_IOFactory::createReader('Excel5');
 $objPHPExcel = $objReader->load("../../Classes/template.xls");
-
 $objPHPExcel->getProperties()
     ->setCreator("GaryDev")
     ->setLastModifiedBy("JoseDev")
@@ -20,7 +21,7 @@ $json = file_get_contents("php://input");
 $jsonObject = json_decode($json);
 $array = report($jsonObject);
 if ($array != null) {
-    $row = 3;
+    $row = 8;
     foreach ($array as $value) {
         $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue("A$row", $value->getTarjetNumber())
@@ -49,23 +50,25 @@ if ($array != null) {
             $sheet->getColumnDimension($cell->getColumn())->setAutoSize(true);
         }
     }
-    header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="reporte.xls"');
-    header('Cache-Control: max-age=0');
-    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-    ob_start();
-    $objWriter->save('php://output');
-    $xlsData = ob_get_contents();
-    ob_end_clean();
-    http_response_code(200);
-    print_r(json_encode(array(
-        'status' => 200,
-        "message" => "data:xls;base64," . base64_encode($xlsData)
-    )));
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="reporte.xls"');
+        header('Cache-Control: max-age=0');
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        ob_start();
+        $objWriter->save('php://output');
+        $xlsData = ob_get_contents();
+        ob_end_clean();
+        http_response_code(200);
+        print_r(json_encode(array(
+            'status' => 200,
+            'message' => "data:xls;base64," . base64_encode($xlsData)
+        )));
+    
+    
 } else {
     http_response_code(404);
     print_r(json_encode(array(
         'status' => 404,
-        "message" => "No hay registros"
+        'message' => "No hay registros"
     )));
 }
