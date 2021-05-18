@@ -2,7 +2,6 @@
 session_start();
 require_once("../model/Connection.php");
 require_once("../../Classes/PHPExcel.php");
-require_once("../../Classes/PHPExcel/Writer/PDF.php");
 require_once("../../Classes/PHPExcel/IOFactory.php");
 require_once("./reportOperation.php");
 
@@ -16,12 +15,16 @@ $objPHPExcel->getProperties()
     ->setDescription("Documento generado para la asistencia de empleados")
     ->setKeywords("Empleados")
     ->setCategory("Reporte");
-
-$json = file_get_contents("php://input");
-$jsonObject = json_decode($json);
+$tarjet_number = $_GET['tarjet_number'];
+$init = $_GET['date'];
+$end = $_GET['dateEnd'];
+$jsonObject = new stdClass();
+$jsonObject->tarjetNumber = $tarjet_number;
+$jsonObject->init = $init;
+$jsonObject->end = $end;
 $array = report($jsonObject);
 if ($array != null) {
-    $row = 8;
+    $row = 9;
     foreach ($array as $value) {
         $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue("A$row", $value->getTarjetNumber())
@@ -41,7 +44,7 @@ if ($array != null) {
     foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
 
         $objPHPExcel->setActiveSheetIndex($objPHPExcel->getIndex($worksheet));
-    
+
         $sheet = $objPHPExcel->getActiveSheet();
         $cellIterator = $sheet->getRowIterator()->current()->getCellIterator();
         $cellIterator->setIterateOnlyExistingCells(true);
@@ -50,21 +53,19 @@ if ($array != null) {
             $sheet->getColumnDimension($cell->getColumn())->setAutoSize(true);
         }
     }
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="reporte.xls"');
-        header('Cache-Control: max-age=0');
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-        ob_start();
-        $objWriter->save('php://output');
-        $xlsData = ob_get_contents();
-        ob_end_clean();
-        http_response_code(200);
-        print_r(json_encode(array(
-            'status' => 200,
-            'message' => "data:xls;base64," . base64_encode($xlsData)
-        )));
-    
-    
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="Reporte.xls"');
+    header('Cache-Control: max-age=0');
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+    ob_start();
+    $objWriter->save('php://output');
+    /*$xlsData = ob_get_contents();
+    ob_end_clean();
+    http_response_code(200);
+    print_r(json_encode(array(
+        'status' => 200,
+        'message' => "data:xls;base64," . base64_encode($xlsData)
+    )));*/
 } else {
     http_response_code(404);
     print_r(json_encode(array(

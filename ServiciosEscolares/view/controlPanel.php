@@ -179,7 +179,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                     <th class="border-0">Apellido</th>
                                                     <th class="border-0">Correo electrónico</th>
                                                     <th class="border-0">Número de tarjeta</th>
-                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -247,7 +247,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <span href='#' id="error_message" class='text-center new-account' style='color:red'></span>
-                                                                                
+
                                                                             </div>
 
 
@@ -305,8 +305,8 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                     </div>
                                     <!--end of col-->
                                 </div>
-                                <span class="mx-auto"id="msgDate" style="color: red"></span>
-                                    
+                                <span class="mx-auto" id="msgDate" style="color: red"></span>
+
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
                                         <table class="table">
@@ -320,18 +320,28 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                     <th class="border-0">Regreso</th>
                                                     <th class="border-0">Salida</th>
                                                     <th class="border-0">Fecha</th>
-                                                    <th class="border-0" >Comentarios</th>
+                                                    <th class="border-0">Comentarios</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="historyTable-tbody">
 
                                             </tbody>
-                                            
+
                                             <td colspan="9">
                                                 <div class="container bg-light">
                                                     <div class="col-md-12 text-center">
-                                                        <a id="linkReport" class="pr-sm-3 btn btn-primary" onclick="downloadReport(this)" href="#">Descargar Excel</a>
-                                                        <a id="linkReportPDF" class="btn btn-primary" onclick="downloadReport(this)" href="#">Descargar PDF</a>
+                                                        <label>
+                                                            <input id="chbkExcel" class="pr-sm-3" type="checkbox" name="check" onclick="onlyOne(this)">Excel
+                                                        </label>
+                                                        <label>
+                                                            <input id="chbkPDF" type="checkbox" name="check" onclick="onlyOne(this)">PDF
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="container bg-light">
+                                                    <div class="col-md-12 text-center">
+                                                        <!--a id="linkReport" class="pr-sm-3 btn btn-primary" onclick="downloadReport(this)" href="#">Descargar Excel</a-->
+                                                        <a id="linkReportPDF" class="btn btn-primary" onclick="downloadReport(this)" href="#">Descargar</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -432,7 +442,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                 </tr>
                                             </thead>
                                             <tbody id="incidentsTable-tbody">
-                                            
+
                                             </tbody>
                                             <td colspan="9">
                                                 <span href='#' id="error_incidents" class='text-center new-account' style='color:red'></span>
@@ -528,15 +538,16 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 }
             });
         }
+
         function checkDates(e) {
-            if(e.value == $("#date").val() && e.value !="" && $("#date").val()!=null){
-                document.querySelector("#generateReport").disabled=true;
+            if (e.value == $("#date").val() && e.value != "" && $("#date").val() != null) {
+                document.querySelector("#generateReport").disabled = true;
                 $("#msgDate").text("Las fechas no deben coincidir");
-            }else{
+            } else {
                 $("#msgDate").text("");
-                document.querySelector("#generateReport").disabled=false;
+                document.querySelector("#generateReport").disabled = false;
             }
-          }
+        }
 
         function setRestrinction() {
 
@@ -634,18 +645,21 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
         }
 
         function downloadReport(e) {
-            console.log(e == document.getElementById("linkReportPDF"));
-            const _type= (e == document.getElementById("linkReportPDF")) ? 'pdf' : 'xls';
-            const filter_tarjetNumber = document.querySelector('#filter_tarjetNumber').value;
-            const dateInit = document.querySelector('#date').value;
-            const dateEnd = document.querySelector('#dateEnd').value;
-            const json = {
+            if (document.querySelector("#chbkExcel").checked) {
+                const filter_tarjetNumber = document.querySelector('#filter_tarjetNumber').value;
+                const dateInit = document.querySelector('#date').value;
+                const dateEnd = document.querySelector('#dateEnd').value;
+                window.location.href = `../controller/downloadReport.php?tarjet_number=${filter_tarjetNumber}&date=${dateInit}&dateEnd=${dateEnd}`;
+            } else if (document.querySelector("#chbkPDF").checked) {
+                downloadReportPDF();
+            }
+
+            /*const json = {
                 tarjetNumber: filter_tarjetNumber,
                 init: dateInit,
-                end: dateEnd,
-                type: _type
-            };
-            $.ajax({
+                end: dateEnd
+            };*/
+            /*$.ajax({
                 contentType: "application/json",
                 dataType: "json",
                 type: "POST",
@@ -656,8 +670,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                     var hiddenElement = document.createElement('a');
                     hiddenElement.href= response.message
                     hiddenElement.target = '_blank';
-                    if(response.type == 'pdf') hiddenElement.download = 'Reporte.pdf';
-                    else hiddenElement.download = 'Reporte.xls';
+                    hiddenElement.download = 'Reporte.xls';
                     hiddenElement.click();
 
                 },
@@ -665,7 +678,14 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                     console.log("error", error);
                     $("#error_messageReport").text(error.responseJSON.message);
                 }
-            });
+            });*/
+        }
+
+        function downloadReportPDF(e) {
+            const filter_tarjetNumber = document.querySelector('#filter_tarjetNumber').value;
+            const dateInit = document.querySelector('#date').value;
+            const dateEnd = document.querySelector('#dateEnd').value;
+            window.location.href = `../controller/downloadReportPDF.php?tarjet_number=${filter_tarjetNumber}&date=${dateInit}&dateEnd=${dateEnd}`;
         }
 
         function addDataHistoryTable(json) {
@@ -702,10 +722,11 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                         `;
             }
         }
+
         function getIncidents() {
             const json = {
                 tarjet_number: document.querySelector("#tarjetNumberIncidents").value
-              //  date: document.querySelector("#tarjetNumberIncidents").value,
+                //  date: document.querySelector("#tarjetNumberIncidents").value,
             }
             $.ajax({
                 contentType: "application/json",
@@ -720,16 +741,16 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                         <td id="nameIncident" class="text-center"></td>
                         <td id="dateIncident" class="text-center"><input type="date"></td>
                      */
-                    let table=document.querySelector("#incidentsTable-tbody");
-                    table.innerHTML= `<tr>
+                    let table = document.querySelector("#incidentsTable-tbody");
+                    table.innerHTML = `<tr>
                                                 <td id="tarjetIncident" class="text-center"></td>
                                                 <td id="nameIncident" class="text-center"></td>
                                                 <td class="text-center"><input id="dateIncident" type="date"></td>
                                                 <td class="text-center"> <button class="btn btn-success" type="button" onclick="registerIncident()">Registrar</button></td>
                                       </tr>`
-                    document.querySelector("#error_incidents").innerHTML="";             
-                    document.querySelector("#tarjetIncident").innerHTML=response.tarjet_number;
-                    document.querySelector("#nameIncident").innerHTML=response.name
+                    document.querySelector("#error_incidents").innerHTML = "";
+                    document.querySelector("#tarjetIncident").innerHTML = response.tarjet_number;
+                    document.querySelector("#nameIncident").innerHTML = response.name
 
                 },
                 error: function(error) {
@@ -738,12 +759,13 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 }
             });
         }
+
         function registerIncident() {
             console.log("Hola")
-            const _tarjet_number=document.querySelector("#tarjetIncident").innerHTML;
-            const _date=document.querySelector("#dateIncident").value;
-            const json ={
-                tarjet_number:_tarjet_number,
+            const _tarjet_number = document.querySelector("#tarjetIncident").innerHTML;
+            const _date = document.querySelector("#dateIncident").value;
+            const json = {
+                tarjet_number: _tarjet_number,
                 date: _date
             };
             console.log(json);
@@ -755,17 +777,24 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 data: JSON.stringify(json),
                 success: function(response) {
                     console.log(response);
-                    document.querySelector("#error_incidents").innerHTML="";
-                    document.querySelector("#success_incidents").innerHTML=response.message;
-                    document.querySelector("#incidentsTable-tbody").innerHTML="";
-                    
+                    document.querySelector("#error_incidents").innerHTML = "";
+                    document.querySelector("#success_incidents").innerHTML = response.message;
+                    document.querySelector("#incidentsTable-tbody").innerHTML = "";
+
                 },
                 error: function(error) {
                     console.log("error", error);
-                    document.querySelector("#success_incidents").innerHTML="";
+                    document.querySelector("#success_incidents").innerHTML = "";
                     $("#error_incidents").text(error.responseJSON.message);
                 }
             });
+        }
+
+        function onlyOne(checkbox) {
+            var checkboxes = document.getElementsByName('check')
+            checkboxes.forEach((item) => {
+                if (item !== checkbox) item.checked = false
+            })
         }
         $(document).ready(function() {
             $("#historyTable").hide();
