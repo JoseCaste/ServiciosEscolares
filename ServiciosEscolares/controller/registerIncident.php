@@ -16,7 +16,7 @@ if($conn->checkIncident($jsonObject->tarjet_number, $jsonObject->date)){
         'status'=>201,
         "message"=> "El empleado se ha registrado"
     )));*/
-    if($conn->registerIncident($jsonObject->tarjet_number, $jsonObject->date)){
+    if($conn->registerIncident($jsonObject->tarjet_number,$jsonObject->explainIncidents, $jsonObject->date)){
         http_response_code(201);
         print_r(json_encode(array(
             'status'=>201,

@@ -331,7 +331,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                 <div class="container bg-light">
                                                     <div class="col-md-12 text-center">
                                                         <label>
-                                                            <input id="chbkExcel" class="pr-sm-3" type="checkbox" name="check" onclick="onlyOne(this)">Excel
+                                                            <input id="chbkExcel" class="pr-sm-3" type="checkbox" name="check" onclick="onlyOne(this)" checked>Excel
                                                         </label>
                                                         <label>
                                                             <input id="chbkPDF" type="checkbox" name="check" onclick="onlyOne(this)">PDF
@@ -438,7 +438,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                     <th class="border-0 text-center">Tarjeta</th>
                                                     <th class="border-0 text-center">Nombre completo</th>
                                                     <th class="border-0 text-center">fecha</th>
-                                                    <th class="border-0 text-center">Restringido</th>
+                                                    <th class="border-0 text-center">Motivo</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="incidentsTable-tbody">
@@ -746,6 +746,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                 <td id="tarjetIncident" class="text-center"></td>
                                                 <td id="nameIncident" class="text-center"></td>
                                                 <td class="text-center"><input id="dateIncident" type="date"></td>
+                                                <td class="text-center"><input id="explainIncident" type="text" placeholder="Explique el motivo"></td>
                                                 <td class="text-center"> <button class="btn btn-success" type="button" onclick="registerIncident()">Registrar</button></td>
                                       </tr>`
                     document.querySelector("#error_incidents").innerHTML = "";
@@ -764,8 +765,11 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
             console.log("Hola")
             const _tarjet_number = document.querySelector("#tarjetIncident").innerHTML;
             const _date = document.querySelector("#dateIncident").value;
-            const json = {
+            const _explainIncidents= document.querySelector("#explainIncident").value;
+            if(_explainIncidents!=""){
+                const json = {
                 tarjet_number: _tarjet_number,
+                explainIncidents:_explainIncidents,
                 date: _date
             };
             console.log(json);
@@ -788,6 +792,10 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                     $("#error_incidents").text(error.responseJSON.message);
                 }
             });
+            }else{
+                document.querySelector("#error_incidents").innerHTML = "Debe proporcionar un motivo";
+            }
+            
         }
 
         function onlyOne(checkbox) {

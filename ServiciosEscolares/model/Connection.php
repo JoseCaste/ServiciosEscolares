@@ -277,9 +277,9 @@ class Connection
             return false;
         }
     }
-    public function registerIncident($tarjet_number,$date){
+    public function registerIncident($tarjet_number,$explainIncidents,$date){
         $id=$this->getSpecificEmployee($tarjet_number);
-        $query= mysqli_query($this->db,"INSERT INTO IO_employee (employee_id,in_job,out_eat,back_eat,out_job,_date,comments) VALUES($id,'00:00:00','00:00:00','00:00:00','00:00:00','$date','Comisionado a otro campus')");
+        $query= mysqli_query($this->db,"INSERT INTO IO_employee (employee_id,in_job,out_eat,back_eat,out_job,_date,comments) VALUES($id,'00:00:00','00:00:00','00:00:00','00:00:00','$date','$explainIncidents')");
         if($query)
             return true;
         else 
