@@ -653,32 +653,6 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
             } else if (document.querySelector("#chbkPDF").checked) {
                 downloadReportPDF();
             }
-
-            /*const json = {
-                tarjetNumber: filter_tarjetNumber,
-                init: dateInit,
-                end: dateEnd
-            };*/
-            /*$.ajax({
-                contentType: "application/json",
-                dataType: "json",
-                type: "POST",
-                url: "../controller/downloadReport.php",
-                data: JSON.stringify(json),
-                success: function(response) {
-                    $("#error_messageReport").text("");
-                    var hiddenElement = document.createElement('a');
-                    hiddenElement.href= response.message
-                    hiddenElement.target = '_blank';
-                    hiddenElement.download = 'Reporte.xls';
-                    hiddenElement.click();
-
-                },
-                error: function(error) {
-                    console.log("error", error);
-                    $("#error_messageReport").text(error.responseJSON.message);
-                }
-            });*/
         }
 
         function downloadReportPDF(e) {
@@ -736,11 +710,6 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 data: JSON.stringify(json),
                 success: function(response) {
                     console.log(response);
-                    /**
-                     *  <td id="tarjetIncident" class="text-center"></td>
-                        <td id="nameIncident" class="text-center"></td>
-                        <td id="dateIncident" class="text-center"><input type="date"></td>
-                     */
                     let table = document.querySelector("#incidentsTable-tbody");
                     table.innerHTML = `<tr>
                                                 <td id="tarjetIncident" class="text-center"></td>
@@ -752,17 +721,18 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                     document.querySelector("#error_incidents").innerHTML = "";
                     document.querySelector("#tarjetIncident").innerHTML = response.tarjet_number;
                     document.querySelector("#nameIncident").innerHTML = response.name
+                    document.querySelector("#success_incidents").innerHTML = "";
 
                 },
                 error: function(error) {
                     console.log("error", error);
                     $("#error_incidents").text(error.responseJSON.message);
+                    document.querySelector("#success_incidents").innerHTML = "";
                 }
             });
         }
 
         function registerIncident() {
-            console.log("Hola")
             const _tarjet_number = document.querySelector("#tarjetIncident").innerHTML;
             const _date = document.querySelector("#dateIncident").value;
             const _explainIncidents= document.querySelector("#explainIncident").value;
@@ -793,6 +763,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 }
             });
             }else{
+                document.querySelector("#success_incidents").innerHTML = "";
                 document.querySelector("#error_incidents").innerHTML = "Debe proporcionar un motivo";
             }
             

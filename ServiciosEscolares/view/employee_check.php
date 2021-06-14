@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./logo_unam_.jpg">
     <title>Entradas y salidas</title>
@@ -18,6 +18,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Orbitron'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Aldrich'>
+    <style>
+        .clock {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translateY(00%);
+            color: #3582da;
+            font-size: 25px;
+            font-family: Orbitron;
+            font-weight: bold;
+            letter-spacing: 7px;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,8 +41,14 @@
                 <h1 class="text-center login-title"><strong>Verificador </strong></h1>
                 <div class="account-wall">
                     <div style="align-items: center;">
-                        <img class="profile-img" src="./clock-icon.png" alt="">
+                        <img class="profile-img" src="./logo_unam_.png" alt="">
                     </div>
+                    <div style="align-items: center;">
+                    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+                    </div>
+                    </br>
+                    </br>
+                    
 
                     <form class="form-signin" id="formRegister">
                         <div class="form-group">
@@ -93,10 +113,10 @@
                         console.log(response);
                         $("#message").css("color", "blue");
                         $("#message").text(response.message);
-                        if(response.salaryDecrement !=null){
+                        if (response.salaryDecrement != null) {
                             $("#messageSalary").css("color", "red");
                             $("#messageSalary").text(response.salaryDecrement);
-                        }else{
+                        } else {
                             $("#messageSalary").text("");
                         }
                     },
@@ -127,7 +147,19 @@
             })
         });
     </script>
-
+    <script>
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours(); // 0 - 23
+            var m = date.getMinutes(); // 0 - 59
+            var s = date.getSeconds(); // 0 - 59
+            var time = h + ":" + m + ":" + s;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+            setTimeout(showTime, 1000);
+        }
+        showTime();
+    </script>
 </body>
 
 </html>

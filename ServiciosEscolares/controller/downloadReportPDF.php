@@ -1,5 +1,6 @@
 <?php
     require_once("../model/Connection.php");
+    //require_once("../../ServiciosEscolares/view/");
     require_once("../../Classes/PHPExcel/IOFactory.php");
     require_once("../controller/reportOperation.php");
     $objReader = PHPExcel_IOFactory::createReader('Excel5');
@@ -55,10 +56,18 @@
  
     // Set active sheet index to the first sheet, so Excel opens this as the first sheet
     $objPHPExcel->setActiveSheetIndex(0);
-    //$objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
     $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
     $objPHPExcel->getActiveSheet()->removeColumn('J','K','L');
-        
+    
+    $objPHPExcel->setActiveSheetIndex(0);
+    $activeSheet = $objPHPExcel->getActiveSheet();
+    $objDrawing = new PHPExcel_Worksheet_Drawing();
+        $objDrawing->setWorksheet($activeSheet);
+        $activeSheet->getColumnDimension('E')->setWidth(50);
+        $activeSheet->getRowDimension(2)->setRowHeight(80);
+        $objDrawing->setOffsetX(10)->setOffsetY(10);
+        $objDrawing->setPath('./logo_unam_.jpg');
+        $objDrawing->setWidth(80)->setHeight(80);
 if (!PHPExcel_Settings::setPdfRenderer(
  $rendererName,
  $rendererLibraryPath
