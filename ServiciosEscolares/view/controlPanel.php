@@ -178,11 +178,10 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                     <th class="border-0">Nombre</th>
                                                     <th class="border-0">Apellido</th>
                                                     <th class="border-0">Correo electrónico</th>
-                                                    <th class="border-0">Número de tarjeta</th>
-
+                                                    <th class="border-0">Número de tarjeta / QR</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="employee_table">
                                                 <?php
                                                 for ($i = 0; $i < count($controller->employee_array); $i++) {
                                                     echo "<tr>"
@@ -200,7 +199,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                                 <td>" . $controller->employee_array[$i]->getMail() . "</td>"
                                                         .
                                                         "
-                                                                <td>" . $controller->employee_array[$i]->getTarjetNumber() . "</td>"
+                                                                <td><a class='btn btn-light' onclick=window.open('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=".$controller->employee_array[$i]->getTarjetNumber()."')>" . $controller->employee_array[$i]->getTarjetNumber() . "</a></td>"
                                                         .
                                                         "</tr>";
                                                 }
@@ -779,6 +778,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
             $("#historyTable").hide();
             $("#restrictionTable").hide();
             $("#incidentsTable").hide();
+
             $('#userForm').submit(function(e) {
                 e.preventDefault();
                 const form = new FormData(e.target);
