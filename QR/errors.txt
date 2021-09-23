@@ -1,0 +1,340 @@
+2021-09-24 00:19:08: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 00:50:41: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 00:50:48: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 00:50:52: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 00:57:40: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 01:04:55: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 01:07:02: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 01:07:05: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 01:08:02: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+2021-09-24 01:09:47: <br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\frame_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_0\mask_21_0.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_1\mask_21_1.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_2\mask_21_2.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_3\mask_21_3.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_4\mask_21_4.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_5\mask_21_5.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_6\mask_21_6.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\xampp\htdocs\ServiciosEscolares\QR\cache\mask_7\mask_21_7.dat): failed to open stream: No such file or directory in <b>C:\xampp\htdocs\ServiciosEscolares\QR\qrmask.php</b> on line <b>155</b><br />
