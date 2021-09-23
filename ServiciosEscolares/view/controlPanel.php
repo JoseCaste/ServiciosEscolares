@@ -199,7 +199,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                                                                 <td>" . $controller->employee_array[$i]->getMail() . "</td>"
                                                         .
                                                         "
-                                                                <td><a class='btn btn-light' onclick=window.open('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=".$controller->employee_array[$i]->getTarjetNumber()."')>" . $controller->employee_array[$i]->getTarjetNumber() . "</a></td>"
+                                                                <td><a class='btn btn-light' onclick=window.open('http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/ServiciosEscolares/controller/GenerateQr.php?tarjet_numer=".$controller->employee_array[$i]->getTarjetNumber()."')>" . $controller->employee_array[$i]->getTarjetNumber() . "</a></td>"
                                                         .
                                                         "</tr>";
                                                 }
