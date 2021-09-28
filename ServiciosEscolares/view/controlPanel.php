@@ -813,6 +813,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 $("#allEmployees").show();
                 $("#historyTable").hide();
                 $("#restrictionTable").hide();
+                $("#incidentsTable").hide();
 
             });
             $("#restrictions").click(function() {
