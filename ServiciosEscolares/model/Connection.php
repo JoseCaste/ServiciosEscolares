@@ -351,7 +351,11 @@ class Connect_to_database
 {
     public static function conexion()
     {
+        if (version_compare(PHP_VERSION, '8.0.10') >= 0) 
+            $conexion = new mysqli("127.0.0.1", "php", "password", "control_escolar");   
+        else 
         $conexion = new mysqli("localhost", "php", "password", "control_escolar", "3306");
+        
         $conexion->query("SET NAMES 'utf8'");
         return $conexion;
     }
