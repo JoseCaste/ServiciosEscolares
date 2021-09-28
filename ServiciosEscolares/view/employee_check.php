@@ -229,8 +229,11 @@
                             }
                         },
                         error: function(error) {
-                            console.log(error.responseJSON);
-                            if (confirm(error.responseJSON.message)) {
+                            if(error.status == 404){
+                                $("#messageSalary").css("color", "red");
+                                $("#messageSalary").text(error.responseJSON.message);
+                            }else{
+                                if (confirm(error.responseJSON.message)) {
                                 $.ajax({
                                     contentType: "application/json",
                                     dataType: "json",
@@ -243,11 +246,10 @@
                                         $("#messageSalary").text("");
                                     },
                                     error: function(error) {
-                                        if (confirm(error.responseJSON.message)) {
-
-                                        }
+                                        $("#messageSalary").text(error.responseJSON.message);
                                     }
                                 });
+                            }
                             }
                         }
                     });
