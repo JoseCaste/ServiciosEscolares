@@ -609,7 +609,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
                 },
                 error: function(error) {
-                    console.log(error);
+                    document.querySelector("#error_restriction").innerHTML=error.responseJSON.message
                 }
 
             });
