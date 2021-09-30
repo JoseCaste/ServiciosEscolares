@@ -579,6 +579,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
         function searchEmployee(e) {
             var employeeId = $("#fieldTarjetNumber").val();
+            var restrictionTable_tbody = document.querySelector("#restrictionTable-tbody");
             const json = {
                 employeeId: employeeId
             }
@@ -589,8 +590,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
                 url: "../controller/getRestrinctionEmployee.php",
                 data: JSON.stringify(json),
                 success: function(response) {
-                    console.log(response);
-                    var restrictionTable_tbody = document.querySelector("#restrictionTable-tbody");
+                    document.querySelector("#error_restriction").innerHTML="";
                     restrictionTable_tbody.innerHTML = "";
                     var checkBox;
                     if (response.restriction == "0") {
@@ -609,6 +609,7 @@ if ($_SESSION['username'] == null && $_SESSION['password'] == null) {
 
                 },
                 error: function(error) {
+                    restrictionTable_tbody.innerHTML="";
                     document.querySelector("#error_restriction").innerHTML=error.responseJSON.message
                 }
 

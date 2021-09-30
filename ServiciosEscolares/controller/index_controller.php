@@ -11,15 +11,20 @@ if ($username != null && $password != null) {
 
 function validate_admin($username, $password)
 {
-    $conn = new Connection();
-    $name=$conn->getAdmin($username, $password);
-    $_SESSION["username"]=$username;
-    $_SESSION["password"]=$password;
-    if ( $name!= null) {
-        $_SESSION['name']=$name;
-        header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/ServiciosEscolares/view/controlPanel.php");
-    } else {
-        $_SESSION['invalid']="Credenciales no validas";
-        header("Location: http://localhost:".$_SERVER['SERVER_PORT']."/ServiciosEscolares/ServiciosEscolares/view/index.php");
+    try {
+        $conn = new Connection();
+        $name = $conn->getAdmin($username, $password);
+        $_SESSION["username"] = $username;
+        $_SESSION["password"] = $password;
+        if ($name != null) {
+            $_SESSION['name'] = $name;
+            header("Location: http://localhost:" . $_SERVER['SERVER_PORT'] . "/ServiciosEscolares/ServiciosEscolares/view/controlPanel.php");
+        } else {
+            $_SESSION['invalid'] = "Credenciales no validas";
+            header("Location: http://localhost:" . $_SERVER['SERVER_PORT'] . "/ServiciosEscolares/ServiciosEscolares/view/index.php");
+        }
+    } catch (Exception $th) {
+        $_SESSION['server_error']=$th->getMessage();
+        header("Location: http://localhost:" . $_SERVER['SERVER_PORT'] . "/ServiciosEscolares/ServiciosEscolares/view/server_error.php");
     }
 }
