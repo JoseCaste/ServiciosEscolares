@@ -357,6 +357,7 @@ class Connect_to_database
         $conexion = new mysqli("localhost", "php", "password", "control_escolar", "3306");
         if($conexion->connect_errno)
             throw new Exception("No se pudo conectar a la base de datos");
+        
         $conexion->query("SET NAMES 'utf8'");
         return $conexion;
     }
